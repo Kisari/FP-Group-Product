@@ -47,18 +47,26 @@ public class ShoppingCartService implements ShoppingCartInterface {
             product.decreaseQuantity(-1);
         }
     }
+
     @Override
     public double cartAmount(Set<String> items) {
         if (items == null || items.size() == 0)
             return 0;
         double amount = 0;
+        double totalWeight = 0;
+        double tax = 0;
         for (String productName : items) {
             Product product = ProductService.isProductExist(productName);
-            if(product instanceof PhysicalProduct)
+            if(product instanceof PhysicalProduct) {
                 amount += product.getPrice() + ((PhysicalProduct) product).getWeight()*Constant.baseFee;
-            else if(product instanceof DigitalProduct)
-                amount += product.getPrice();
+                totalWeight += ((PhysicalProduct) product).getWeight()*Constant.baseFee;}
+            else if(product instanceof DigitalProduct) {
+                amount += product.getPrice();}
+//            tax = Constant.calculateTax(product.getPrice(), product.getTaxType());
         }
+        double shippingFee = totalWeight * Constant.baseFee;
+
+//        amount += shippingFee + tax;
         return amount;
     }
     public void printCart(Set<String> items){

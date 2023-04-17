@@ -1,4 +1,8 @@
 package s3852307.util;
+
+
+import s3852307.entities.TaxType;
+
 /**
  * @author <Nguyen Ha Minh Duy - s3852307>
  */
@@ -71,5 +75,30 @@ public class Validation {
             }
         }
     }
+
+//    public static TaxType inputTaxType() {
+//        int choice = Validation.inputChoice(1, TaxType.values().length);
+//        return TaxType.values()[choice-1];
+//    }
+
+    public static TaxType inputTaxType(String message) {
+        System.out.println(message);
+        System.out.println("1. Tax-free");
+        System.out.println("2. NORMAL TAX (10%)");
+        System.out.println("3. LUXURY_TAX (20%)");
+        int choice = Validation.inputChoice(1, 3);
+        switch (choice) {
+            case 1:
+                return TaxType.TAX_FREE;
+            case 2:
+                return TaxType.NORMAL_TAX;
+            case 3:
+                return TaxType.LUXURY_TAX;
+            default:
+                return TaxType.TAX_FREE;
+        }
+    }
+
+
 }
 

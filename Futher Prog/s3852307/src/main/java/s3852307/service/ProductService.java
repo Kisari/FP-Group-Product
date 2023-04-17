@@ -42,6 +42,7 @@ public class ProductService implements ProductInterface{
         if (product instanceof PhysicalProduct) {
             ((PhysicalProduct) product).setWeight(Validation.inputDouble("Enter product weight: "));
         }
+        product.setTaxType(Validation.inputTaxType("Tax type options ..."));
         products.add(product);
         System.out.println("Product created successfully!");
     }
@@ -73,24 +74,24 @@ public class ProductService implements ProductInterface{
         products.remove(product);
     }
 
-    public static void addTempProduct(){ // for testing purposes
-        Product product = new PhysicalProduct("PHYSICAL - 1","1",1,1,1);
-        Product product1 = new PhysicalProduct("PHYSICAL - 2","2",5,10,5);
-        Product product2 = new PhysicalProduct("PHYSICAL - 3","3",4,11,7);
-        Product product3 = new PhysicalProduct("PHYSICAL - 4","4",7,12,8);
-        Product product4 = new DigitalProduct("DIGITAL - 1","1",1,1);
-        Product product5 = new DigitalProduct("DIGITAL - 2","2",5,10);
-        Product product6 = new DigitalProduct("DIGITAL - 3","3",4,11);
-        Product product7 = new DigitalProduct("DIGITAL - 4","4",7,12);
-        products.add(product);
-        products.add(product1);
-        products.add(product2);
-        products.add(product3);
-        products.add(product4);
-        products.add(product5);
-        products.add(product6);
-        products.add(product7);
-    }
+//    public static void addTempProduct(){ // for testing purposes
+//        Product product = new PhysicalProduct("PHYSICAL - 1","1",1,1,1);
+//        Product product1 = new PhysicalProduct("PHYSICAL - 2","2",5,10,5);
+//        Product product2 = new PhysicalProduct("PHYSICAL - 3","3",4,11,7);
+//        Product product3 = new PhysicalProduct("PHYSICAL - 4","4",7,12,8);
+//        Product product4 = new DigitalProduct("DIGITAL - 1","1",1,1);
+//        Product product5 = new DigitalProduct("DIGITAL - 2","2",5,10);
+//        Product product6 = new DigitalProduct("DIGITAL - 3","3",4,11);
+//        Product product7 = new DigitalProduct("DIGITAL - 4","4",7,12);
+//        products.add(product);
+//        products.add(product1);
+//        products.add(product2);
+//        products.add(product3);
+//        products.add(product4);
+//        products.add(product5);
+//        products.add(product6);
+//        products.add(product7);
+//    }
 
 }
 
