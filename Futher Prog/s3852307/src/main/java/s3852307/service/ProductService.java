@@ -2,13 +2,12 @@ package s3852307.service;
 /**
  * @author <Nguyen Ha Minh Duy - s3852307>
  */
-import s3852307.entities.DigitalProduct;
-import s3852307.entities.PhysicalProduct;
-import s3852307.entities.Product;
+import s3852307.entities.*;
 import s3852307.util.ScannerUtil;
 import s3852307.util.Validation;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class ProductService implements ProductInterface{
     private static List<Product> products = new ArrayList<Product>();
@@ -19,6 +18,7 @@ public class ProductService implements ProductInterface{
         }
         return null;
     }
+
     @Override
     public void createProduct(String type) {
         Product product = null;
@@ -42,6 +42,36 @@ public class ProductService implements ProductInterface{
         if (product instanceof PhysicalProduct) {
             ((PhysicalProduct) product).setWeight(Validation.inputDouble("Enter product weight: "));
         }
+
+        System.out.print("Enter product tax type: ");
+        Scanner sc = new Scanner(System.in);
+        String taxType = sc.nextLine();
+        product.setTaxType(TaxType.valueOf(taxType));
+
+        System.out.print("Choose the type of coupon: ");
+        System.out.println("1. Percentage coupon \t 2. Price coupon \t 3. No coupon");
+        if (sc.hasNextInt()) {
+            int couponType = sc.nextInt();
+            switch (couponType) {
+                case 1 -> {
+                    System.out.print("Enter the (integer) percentage of discount: ");
+                    int discount = sc.nextInt();
+                    String code = sc.nextLine();
+                    product.setCoupon(new PercentCoupon(code, product, discount));
+                }
+                case 2 -> {
+                    System.out.print("Enter the price of discount: ");
+                    double discountPrice = sc.nextDouble();
+                    String code = sc.nextLine();
+                    product.setCoupon(new PriceCoupon(code, product, discountPrice));
+                }
+                case 3 -> product.setCoupon(null);
+                default -> System.out.println("Invalid input!");
+            }
+        } else {
+            System.out.println("Invalid input!");
+        }
+
         products.add(product);
         System.out.println("Product created successfully!");
     }

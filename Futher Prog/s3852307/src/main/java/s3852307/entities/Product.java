@@ -8,6 +8,8 @@ public abstract class Product {
     private String description;
     private int quantityAvailable;
     private double price;
+    private Coupon coupon;
+    private TaxType taxType;
 
     public Product() {
     }
@@ -16,6 +18,7 @@ public abstract class Product {
         this.description = description;
         this.quantityAvailable = quantityAvailable;
         this.price = price;
+        this.taxType = taxType;
     }
 
     public String getName() {
@@ -53,12 +56,35 @@ public abstract class Product {
     public void decreaseQuantity(int quantity) {
         this.quantityAvailable -= quantity;
     }
+    public TaxType getTaxType() {
+        return taxType;
+    }
+
+    public void setTaxType(TaxType taxType) {
+        this.taxType = taxType;
+    }
+
+    public double getTaxAmount() {
+        return price * taxType.getTaxRate();
+    }
+
+    public Coupon getCoupon() {
+        return coupon;
+    }
+
+    public void setCoupon(Coupon coupon) {
+        this.coupon = coupon;
+    }
 
     @Override
     public String toString() {
-        return "name='" + name + '\'' +
+        return "Product: " +
+                "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", quantityAvailable=" + quantityAvailable +
-                ", price=" + price;
+                ", price=" + price +
+                ", coupon=" + coupon.toString() +
+                ", tax type=" + taxType +
+                '.';
     }
 }

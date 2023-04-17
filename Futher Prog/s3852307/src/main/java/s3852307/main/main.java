@@ -76,18 +76,19 @@ public class main {
                     System.out.println("|=========================|");
                     System.out.println("4. Add products to the current shopping cart");
                     System.out.println("|=========================|");
-                    shoppingCartService.addItem(shoppingCart.getItems(), Validation.inputProductName("Enter product name:"));
+                    shoppingCartService.addItem(shoppingCart.getItems(), Validation.inputProductName("Enter product name: "));
                         break;
                 case 5:
                     System.out.println("|=========================|");
                     System.out.println("5. Remove products from the current shopping cart");
                     System.out.println("|=========================|");
-                    shoppingCartService.removeItem(shoppingCart.getItems(),Validation.inputProductName("Enter product name:"));
+                    shoppingCartService.removeItem(shoppingCart.getItems(),Validation.inputProductName("Enter product name: "));
                     break;
                 case 6:
                     System.out.println("|=========================|");
                     System.out.println("6. Display the cart amount");
                     System.out.println("|=========================|");
+
                     System.out.println("Total amount: " + shoppingCartService.cartAmount(shoppingCart.getItems()));
                     break;
                 case 7:

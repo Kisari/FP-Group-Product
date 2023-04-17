@@ -2,14 +2,14 @@ package s3852307.service;
 /**
  * @author <Nguyen Ha Minh Duy - s3852307>
  */
-import s3852307.entities.DigitalProduct;
-import s3852307.entities.PhysicalProduct;
-import s3852307.entities.Product;
+import s3852307.entities.*;
 import s3852307.util.Constant;
 
+import java.util.Scanner;
 import java.util.Set;
 
 public class ShoppingCartService implements ShoppingCartInterface {
+    private Coupon coupon;
     @Override
     public boolean addItem(Set<String> items, String productName) {
         Product product = ProductService.isProductExist(productName);
@@ -21,7 +21,7 @@ public class ShoppingCartService implements ShoppingCartInterface {
             product.decreaseQuantity(1);
             System.out.println("Product added to cart!");
             return true;
-        }  else if (items.contains(productName)&&!items.isEmpty()) {
+        }  else if (items.contains(productName)&& !items.isEmpty()) {
             System.out.println("Product is already in cart!");
             return false;
         } else if (product.getQuantityAvailable() == 0) {
@@ -47,17 +47,43 @@ public class ShoppingCartService implements ShoppingCartInterface {
             product.decreaseQuantity(-1);
         }
     }
+
+
+
     @Override
     public double cartAmount(Set<String> items) {
-        if (items == null || items.size() == 0)
-            return 0;
+        if (items == null || items.size() == 0) return 0;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("What type of coupon do you want to apply for this shopping cart?");
+        System.out.println("1. Price coupon");
+        System.out.println("2. Percent coupon");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
         double amount = 0;
+
         for (String productName : items) {
             Product product = ProductService.isProductExist(productName);
-            if(product instanceof PhysicalProduct)
-                amount += product.getPrice() + ((PhysicalProduct) product).getWeight()*Constant.baseFee;
-            else if(product instanceof DigitalProduct)
-                amount += product.getPrice();
+            double productPrice = product.getPrice();
+            if (coupon != null && coupon.getProduct().equals(product.getName())) {
+                if (coupon instanceof PriceCoupon) {
+                    productPrice -= coupon.getDiscount();
+                } else if (coupon instanceof PercentCoupon) {
+                    productPrice -= coupon.getDiscount();
+                }
+            }
+            if (product instanceof PhysicalProduct) {
+                amount += (((PhysicalProduct) product).getWeight() * Constant.baseFee) + product.getPrice() * (product.getTaxType().getTaxRate());
+                if (coupon != null && coupon.getProduct().equals(product)) {
+                    amount -= coupon.getDiscount();
+                }
+            }
+
+            else if (product instanceof DigitalProduct) {
+                amount += product.getPrice() * product.getTaxType().getTaxRate();
+                if (coupon != null && coupon.getProduct().equals(product)) {
+                    amount -= coupon.getDiscount();
+                }
+            }
         }
         return amount;
     }
