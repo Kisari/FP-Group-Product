@@ -62,11 +62,10 @@ public class ShoppingCartService implements ShoppingCartInterface {
                 totalWeight += ((PhysicalProduct) product).getWeight()*Constant.baseFee;}
             else if(product instanceof DigitalProduct) {
                 amount += product.getPrice();}
-//            tax = Constant.calculateTax(product.getPrice(), product.getTaxType());
+            tax = product.getPrice() * product.getTaxType().getTaxRate();
         }
         double shippingFee = totalWeight * Constant.baseFee;
-
-//        amount += shippingFee + tax;
+        amount += shippingFee + tax;
         return amount;
     }
     public void printCart(Set<String> items){
