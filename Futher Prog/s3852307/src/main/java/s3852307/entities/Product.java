@@ -8,14 +8,16 @@ public abstract class Product {
     private String description;
     private int quantityAvailable;
     private double price;
+    private TaxType tax;
 
     public Product() {
     }
-    public Product(String name, String description, int quantityAvailable, double price) {
+    public Product(String name, String description, int quantityAvailable, double price, TaxType taxRate) {
         this.name = name;
         this.description = description;
         this.quantityAvailable = quantityAvailable;
         this.price = price;
+        this.tax = taxRate;
     }
 
     public String getName() {
@@ -53,12 +55,20 @@ public abstract class Product {
     public void decreaseQuantity(int quantity) {
         this.quantityAvailable -= quantity;
     }
+    public TaxType getTaxType() {
+        return tax;
+    }
+
+    public void setTaxType(TaxType taxType) {
+        this.tax = taxType;
+    }
 
     @Override
     public String toString() {
         return "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", quantityAvailable=" + quantityAvailable +
-                ", price=" + price;
+                ", price=" + price +
+                ", taxType=" + tax;
     }
 }

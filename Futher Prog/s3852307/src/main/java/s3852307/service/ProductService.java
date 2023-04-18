@@ -10,6 +10,10 @@ import s3852307.util.Validation;
 import java.util.ArrayList;
 import java.util.List;
 
+import static s3852307.entities.TaxType.NORMAL_TAX;
+import static s3852307.entities.TaxType.TAX_FREE;
+import static s3852307.entities.TaxType.LUXURY_TAX;
+
 public class ProductService implements ProductInterface{
     private static List<Product> products = new ArrayList<Product>();
     public static Product isProductExist(String productName) {
@@ -42,6 +46,7 @@ public class ProductService implements ProductInterface{
         if (product instanceof PhysicalProduct) {
             ((PhysicalProduct) product).setWeight(Validation.inputDouble("Enter product weight: "));
         }
+        product.setTaxType(Validation.inputTaxType("Tax type options ..."));
         products.add(product);
         System.out.println("Product created successfully!");
     }
@@ -60,6 +65,7 @@ public class ProductService implements ProductInterface{
         if (product instanceof PhysicalProduct) {
             ((PhysicalProduct) product).setWeight(Validation.inputDouble("Enter product weight: "));
         }
+        product.setTaxType(Validation.inputTaxType("Tax type options ..."));
         System.out.println("Product updated successfully!");
     }
     @Override
@@ -74,14 +80,14 @@ public class ProductService implements ProductInterface{
     }
 
     public static void addTempProduct(){ // for testing purposes
-        Product product = new PhysicalProduct("PHYSICAL - 1","1",1,1,1);
-        Product product1 = new PhysicalProduct("PHYSICAL - 2","2",5,10,5);
-        Product product2 = new PhysicalProduct("PHYSICAL - 3","3",4,11,7);
-        Product product3 = new PhysicalProduct("PHYSICAL - 4","4",7,12,8);
-        Product product4 = new DigitalProduct("DIGITAL - 1","1",1,1);
-        Product product5 = new DigitalProduct("DIGITAL - 2","2",5,10);
-        Product product6 = new DigitalProduct("DIGITAL - 3","3",4,11);
-        Product product7 = new DigitalProduct("DIGITAL - 4","4",7,12);
+        Product product = new PhysicalProduct("PHYSICAL - 1","1",1,1,1, TAX_FREE);
+        Product product1 = new PhysicalProduct("PHYSICAL - 2","2",5,10,5, NORMAL_TAX);
+        Product product2 = new PhysicalProduct("PHYSICAL - 3","3",4,11,7, LUXURY_TAX);
+        Product product3 = new PhysicalProduct("PHYSICAL - 4","4",7,12,8,TAX_FREE);
+        Product product4 = new DigitalProduct("DIGITAL - 1","1",1,1,TAX_FREE);
+        Product product5 = new DigitalProduct("DIGITAL - 2","2",5,10,LUXURY_TAX);
+        Product product6 = new DigitalProduct("DIGITAL - 3","3",4,11, NORMAL_TAX);
+        Product product7 = new DigitalProduct("DIGITAL - 4","4",7,12,LUXURY_TAX);
         products.add(product);
         products.add(product1);
         products.add(product2);
