@@ -1,12 +1,18 @@
 package s3852307.service;
+
 /**
  * @author <Nguyen Ha Minh Duy - s3852307>
  */
 import s3852307.entities.DigitalProduct;
 import s3852307.entities.PhysicalProduct;
 import s3852307.entities.Product;
+import s3852307.entities.ShoppingCart;
 import s3852307.util.Constant;
+import s3852307.util.Validation;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Set;
 
 public class ShoppingCartService implements ShoppingCartInterface {
@@ -16,12 +22,12 @@ public class ShoppingCartService implements ShoppingCartInterface {
         if (product == null) {
             System.out.println("Product does not exist!");
             return false;
-        }else if (items.isEmpty()) {
+        } else if (items.isEmpty()) {
             items.add(productName);
             product.decreaseQuantity(1);
             System.out.println("Product added to cart!");
             return true;
-        }  else if (items.contains(productName)&&!items.isEmpty()) {
+        } else if (items.contains(productName) && !items.isEmpty()) {
             System.out.println("Product is already in cart!");
             return false;
         } else if (product.getQuantityAvailable() == 0) {
@@ -34,8 +40,9 @@ public class ShoppingCartService implements ShoppingCartInterface {
             return true;
         }
     }
+
     @Override
-    public void removeItem(Set<String> items,String productName) {
+    public void removeItem(Set<String> items, String productName) {
         Product product = ProductService.isProductExist(productName);
         if (product == null) {
             System.out.println("Product does not exist!");
@@ -49,26 +56,30 @@ public class ShoppingCartService implements ShoppingCartInterface {
     }
 
     @Override
-    public double cartAmount(Set<String> items) {
+    public Number[] cartAmount(Set<String> items) {
+        Number[] results = new Number[] { 0, 0, 0 };
         if (items == null || items.size() == 0)
-            return 0;
+            return results;
         double amount = 0;
         double totalWeight = 0;
         double tax = 0;
         for (String productName : items) {
             Product product = ProductService.isProductExist(productName);
-            if(product instanceof PhysicalProduct) {
-                amount += product.getPrice() + ((PhysicalProduct) product).getWeight()*Constant.baseFee;
-                totalWeight += ((PhysicalProduct) product).getWeight()*Constant.baseFee;}
-            else if(product instanceof DigitalProduct) {
-                amount += product.getPrice();}
+            if (product instanceof PhysicalProduct) {
+                amount += product.getPrice() + ((PhysicalProduct) product).getWeight() * Constant.baseFee;
+                totalWeight += ((PhysicalProduct) product).getWeight() * Constant.baseFee;
+            } else if (product instanceof DigitalProduct) {
+                amount += product.getPrice();
+            }
             tax = product.getPrice() * product.getTaxType().getTaxRate();
         }
         double shippingFee = totalWeight * Constant.baseFee;
         amount += shippingFee + tax;
-        return amount;
+        results = new Number[] { amount, tax, shippingFee };
+        return results;
     }
-    public void printCart(Set<String> items){
+
+    public void printCart(Set<String> items) {
         if (items == null || items.size() == 0) {
             System.out.println("Cart is empty!");
             return;
@@ -78,5 +89,19 @@ public class ShoppingCartService implements ShoppingCartInterface {
             Product product = ProductService.isProductExist(productName);
             System.out.println(product);
         }
+    }
+
+    public void printReceipt(ShoppingCart shoppingCart, boolean paidStatus) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        this.printCart(shoppingCart.getItems());
+        if ((shoppingCart.getItems() == null) || shoppingCart.getItems().size() == 0)
+            return;
+        System.out.println("Total tax :" + this.cartAmount(shoppingCart.getItems())[1]);
+        System.out.println("Total shipping fee :" + this.cartAmount(shoppingCart.getItems())[2]);
+        Validation.printDelimiter();
+        System.out.println("Date of purchase :" + dateFormat.format(date));
+        Validation.printDelimiter();
+        shoppingCart.setPaid(paidStatus);
     }
 }

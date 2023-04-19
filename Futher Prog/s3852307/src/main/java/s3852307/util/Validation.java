@@ -1,6 +1,5 @@
 package s3852307.util;
 
-
 import s3852307.entities.TaxType;
 
 /**
@@ -11,12 +10,15 @@ public class Validation {
     public static boolean isPositive(int value) {
         return value > 0;
     }
+
     public static boolean isPositive(double value) {
         return value > 0;
     }
+
     public static boolean isPhysicalProductName(String productName) {
         return productName.matches(Constant.PHYSICAL_PRODUCT_REGEX);
     }
+
     public static boolean isDigitalProductName(String productName) {
         return productName.matches(Constant.DIGITAL_PRODUCT_REGEX);
     }
@@ -27,24 +29,28 @@ public class Validation {
             try {
                 System.out.print(message);
                 integer = Integer.parseInt(ScannerUtil.getInstance().nextLine());
-                if (isPositive(integer)) return integer;
+                if (isPositive(integer))
+                    return integer;
             } catch (NumberFormatException exception) {
                 System.out.println("Invalid input! Please enter a positive integer");
             }
         }
     }
+
     public static double inputDouble(String message) {
         double inputNumber = 0;
         while (true) {
             try {
                 System.out.print(message);
                 inputNumber = Double.parseDouble(ScannerUtil.getInstance().nextLine());
-                if (isPositive(inputNumber)) return inputNumber;
+                if (isPositive(inputNumber))
+                    return inputNumber;
             } catch (NumberFormatException exception) {
                 System.out.println("Invalid input! Please enter a positive number");
             }
         }
     }
+
     public static String inputProductName(String message) {
         String inputString = "";
         while (true) {
@@ -53,33 +59,42 @@ public class Validation {
             if (message.contains("physical product")) {
                 if (isPhysicalProductName(inputString))
                     return inputString;
-                else System.out.println("Invalid input! Please enter a valid physical product name (e.g. PHYSICAL - 1))");
+                else
+                    System.out
+                            .println("Invalid input! Please enter a valid physical product name (e.g. PHYSICAL - 1))");
             } else if (message.contains("digital product")) {
-                if (isDigitalProductName(inputString)) return inputString;
-                else System.out.println("Invalid input! Please enter a valid digital product name (e.g. DIGITAL - 1))");
+                if (isDigitalProductName(inputString))
+                    return inputString;
+                else
+                    System.out.println("Invalid input! Please enter a valid digital product name (e.g. DIGITAL - 1))");
             } else {
-                if (isDigitalProductName(inputString)||isPhysicalProductName(inputString)) return inputString;
-                else System.out.println("Invalid input! Please enter a valid product name (e.g. PHYSICAL - 1 or DIGITAL - 1))");
+                if (isDigitalProductName(inputString) || isPhysicalProductName(inputString))
+                    return inputString;
+                else
+                    System.out.println(
+                            "Invalid input! Please enter a valid product name (e.g. PHYSICAL - 1 or DIGITAL - 1))");
             }
         }
     }
+
     public static int inputChoice(int min, int max) {
         int integer = 0;
         while (true) {
             try {
-                System.out.print("Enter your choice ("+min+"-"+max+"): ");
+                System.out.print("Enter your choice (" + min + "-" + max + "): ");
                 integer = Integer.parseInt(ScannerUtil.getInstance().nextLine());
-                if (integer >= min && integer <= max) return integer;
+                if (integer >= min && integer <= max)
+                    return integer;
             } catch (NumberFormatException exception) {
                 System.out.println("Invalid input! Please enter a valid choice");
             }
         }
     }
 
-//    public static TaxType inputTaxType() {
-//        int choice = Validation.inputChoice(1, TaxType.values().length);
-//        return TaxType.values()[choice-1];
-//    }
+    // public static TaxType inputTaxType() {
+    // int choice = Validation.inputChoice(1, TaxType.values().length);
+    // return TaxType.values()[choice-1];
+    // }
 
     public static TaxType inputTaxType(String message) {
         System.out.println(message);
@@ -99,6 +114,8 @@ public class Validation {
         }
     }
 
+    public static void printDelimiter() {
+        System.out.println("|=========================|");
+    }
 
 }
-
