@@ -1,13 +1,16 @@
 package s3852307.entities;
+
 import s3852307.service.ProductService;
 import java.util.HashSet;
 import java.util.Set;
+
 /**
  * @author <Nguyen Ha Minh Duy - s3852307>
  */
 
 public class ShoppingCart implements Comparable<ShoppingCart> {
     private Set<String> items;
+    private boolean isPaid = false;
 
     public ShoppingCart() {
         this.items = new HashSet<>();
@@ -25,6 +28,14 @@ public class ShoppingCart implements Comparable<ShoppingCart> {
         this.items = items;
     }
 
+    public boolean getPaid() {
+        return isPaid;
+    }
+
+    public void setPaid(boolean isPaid) {
+        this.isPaid = isPaid;
+    }
+
     @Override
     public int compareTo(ShoppingCart otherCart) {
         double thisTotalWeight = this.getTotalWeight();
@@ -38,11 +49,12 @@ public class ShoppingCart implements Comparable<ShoppingCart> {
             return 0;
         }
     }
-    public double getTotalWeight(){
+
+    public double getTotalWeight() {
         double totalWeight = 0;
         for (String productName : items) {
             Product product = ProductService.isProductExist(productName);
-            if(product instanceof PhysicalProduct) {
+            if (product instanceof PhysicalProduct) {
                 totalWeight += ((PhysicalProduct) product).getWeight();
             }
         }
