@@ -7,8 +7,8 @@ public class DigitalProduct extends Product{
     public DigitalProduct() {
     }
 
-    public DigitalProduct(String name, String description, int quantityAvailable, double price, CouponType type) {
-        super(name, description, quantityAvailable, price, type);
+    public DigitalProduct(String name, String description, int quantityAvailable, double price, Coupon coupon) {
+        super(name, description, quantityAvailable, price, coupon);
     }
 
 

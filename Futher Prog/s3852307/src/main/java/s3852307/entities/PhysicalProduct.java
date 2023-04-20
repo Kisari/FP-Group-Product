@@ -10,8 +10,8 @@ public class PhysicalProduct extends Product{
     }
 
 
-    public PhysicalProduct(String name, String description, int quantityAvailable, double price, double weight, CouponType type) {
-        super(name, description, quantityAvailable, price, type);
+    public PhysicalProduct(String name, String description, int quantityAvailable, double price, double weight, Coupon coupon) {
+        super(name, description, quantityAvailable, price, coupon);
         this.weight = weight;
     }
 
