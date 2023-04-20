@@ -1,17 +1,16 @@
 package s3852307.entities;
 
 public abstract class Coupon {
-    private String code;
-    private Product product;
+    protected String code;
 
-    public Coupon(String code, Product product) {
+    public Coupon(String code) {
         this.code = code;
-        this.product = product;
     }
 
-    public abstract double getDiscount();
-
     // getters and setters
+    public abstract double applyToPrice(double price);
+    public abstract String getType();
+
     public String getCode() {
         return code;
     }
@@ -20,12 +19,10 @@ public abstract class Coupon {
         this.code = code;
     }
 
-    public Product getProduct() {
-        return product;
+    @Override
+    public String toString() {
+        return "Coupon{" +
+                "code='" + code + '\'' +
+                '}';
     }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
 }

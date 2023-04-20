@@ -1,4 +1,13 @@
 package s3852307.util;
+
+import s3852307.entities.Coupon;
+import s3852307.entities.PercentCoupon;
+import s3852307.entities.PriceCoupon;
+
+import java.util.ArrayList;
+
+import static s3852307.entities.CouponService.isCouponExisted;
+
 /**
  * @author <Nguyen Ha Minh Duy - s3852307>
  */
@@ -69,6 +78,42 @@ public class Validation {
             } catch (NumberFormatException exception) {
                 System.out.println("Invalid input! Please enter a valid choice");
             }
+        }
+    }
+    private static ArrayList<Coupon> couponList = new ArrayList<Coupon>();
+    public static void inputCode(String message) {
+
+        String inputCode = "";
+        System.out.println(message);
+        System.out.println("1. PERCENT COUPON");
+        System.out.println("2. PRICE COUPON");
+        int choice = Validation.inputChoice(1, 2);
+        switch (choice) {
+            case 1:
+                System.out.println("Enter the code of the coupon: ");
+                inputCode = ScannerUtil.getInstance().nextLine();
+                if (isCouponExisted(inputCode)) {
+                    System.out.println("This code: " + inputCode + " already exists.");
+                    return;
+                }
+
+                Coupon coupon1 = new PercentCoupon(inputCode, Validation.inputInt("Enter the discount percent: "));
+                couponList.add(coupon1);
+                break;
+
+            case 2:
+                System.out.println("Enter the code of the coupon: ");
+                inputCode = ScannerUtil.getInstance().nextLine();
+                if (isCouponExisted(inputCode)) {
+                    System.out.println("This code: " + inputCode + " already exists.");
+                    return;
+                }
+
+                Coupon coupon2 = new PriceCoupon(inputCode, Validation.inputDouble("Enter the discount percent: "));
+                couponList.add(coupon2);
+                break;
+            default:
+                System.out.println("Invalid input! Please enter a valid choice");
         }
     }
 }
