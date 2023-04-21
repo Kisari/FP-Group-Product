@@ -8,8 +8,16 @@ import java.util.Scanner;
 public class CouponService {
     private static ArrayList<Coupon> couponList = new ArrayList<Coupon>();
 
+    public CouponService() {
+    }
 
-    private static Scanner scanner = new Scanner(System.in);
+    public static ArrayList<Coupon> getCouponList() {
+        return couponList;
+    }
+
+    public static void setCouponList(ArrayList<Coupon> couponList) {
+        CouponService.couponList = couponList;
+    }
 
     public static boolean isCouponExisted(String code) {
         for (Coupon coupon : couponList) {

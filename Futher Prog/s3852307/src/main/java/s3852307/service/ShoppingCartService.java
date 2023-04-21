@@ -61,7 +61,7 @@ public class ShoppingCartService implements ShoppingCartInterface {
             return 0;
         double amount = 0;
         double totalWeight = 0;
-        double tax = 0;
+
         for (String productName : items) {
             Product product = ProductService.isProductExist(productName);
             if (product instanceof PhysicalProduct) {
@@ -70,32 +70,56 @@ public class ShoppingCartService implements ShoppingCartInterface {
             } else if (product instanceof DigitalProduct) {
                 amount += product.getPrice();
             }
-//            tax = product.getPrice() * product.getTaxType().getTaxRate();
         }
         double shippingFee = totalWeight * Constant.baseFee;
-//        amount += shippingFee + tax;
+
+
         return amount;
     }
 
 
-    public double applyCoupon(Set<String> items) {
+    public boolean applyCoupon(Set<String> items) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter product name: ");
-        String name = scanner.next();
+        String name = scanner.nextLine();
+        Product product = null;
+
+        for (String productName : items) {
+            System.out.println("debugging: " + productName);
+            if (productName.equalsIgnoreCase(name)) {
+                product = ProductService.isProductExist(name);
+                break;
+            }
+        }
+
+
+        if (product == null) {
+            System.out.println("Product does not exist!");
+            return false;
+        }
+
+        if (!items.contains(name)) {
+            System.out.println("Product is not in cart!");
+            return false;
+        }
+        product.toString();
+        product.printCouponList();
+
         System.out.print("Enter coupon code: ");
         String code = scanner.next();
-        if (coupon.getCode().equals(product.getName())) {
-            double discountedPrice;
-            if (coupon instanceof PriceCoupon) {
-                double discountAmount = ((PriceCoupon) coupon).applyToPrice(product.getPrice());
-                discountedPrice = product.getPrice() - discountAmount;
-            } else {
-                double percentOff = ((PercentCoupon) coupon).applyToPrice(product.getPrice());
-                discountedPrice = product.getPrice() * (100 - percentOff) / 100;
+
+        for (Coupon coupon : product.getCouponList()) {
+            if (coupon.getCode().equals(code)) {
+                product.setApplyCouponCode(coupon);
+                System.out.println("Coupon applied!");
+                break;
             }
-            product.setPrice(discountedPrice);
         }
-        return product.getPrice();
+        if (product.getApplyCouponCode() == null) {
+            System.out.println("Coupon does not exist!");
+            return false;
+        }
+        return true;
     }
 
 

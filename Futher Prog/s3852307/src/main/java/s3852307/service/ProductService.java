@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 public class ProductService implements ProductInterface{
     private static List<Product> products = new ArrayList<Product>();
+    private static CouponService couponList = new CouponService();
 
 
     public static Product isProductExist(String productName) {
@@ -47,8 +48,10 @@ public class ProductService implements ProductInterface{
         if (product instanceof PhysicalProduct) {
             ((PhysicalProduct) product).setWeight(Validation.inputDouble("Enter product weight: "));
         }
+        product.addCoupon(Validation.inputCode("Coupon Type Options...", couponList));
 
-        product.setCoupon();
+
+//        product.setCoupon();
 
 
         products.add(product);

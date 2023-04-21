@@ -1,4 +1,7 @@
 package s3852307.entities;
+
+import java.util.ArrayList;
+
 /**
  * @author <Nguyen Ha Minh Duy - s3852307>
  */
@@ -8,7 +11,14 @@ public abstract class Product {
     private String description;
     private int quantityAvailable;
     private double price;
-    private Coupon coupon;
+    private ArrayList<Coupon> couponList = new ArrayList<Coupon>();
+    private Coupon applyCouponCode;
+
+    public void printCouponList() {
+        for (Coupon coupon : couponList) {
+            System.out.println(coupon);
+        }
+    }
 
     public Product() {
     }
@@ -18,8 +28,12 @@ public abstract class Product {
         this.description = description;
         this.quantityAvailable = quantityAvailable;
         this.price = price;
-        this.coupon = coupon;
+        this.couponList.add(coupon);
 //        this.taxType = taxType;
+    }
+
+    public void addCoupon(Coupon coupon){
+        this.couponList.add(coupon);
     }
 
 
@@ -48,6 +62,11 @@ public abstract class Product {
     }
 
     public double getPrice() {
+        double price = this.price;
+        if (applyCouponCode != null) {
+            price = applyCouponCode.applyToPrice(this.price);
+        }
+
         return price;
     }
 
@@ -59,12 +78,20 @@ public abstract class Product {
         this.quantityAvailable -= quantity;
     }
 
-    public Coupon getCoupon() {
-        return coupon;
+    public ArrayList<Coupon> getCouponList() {
+        return couponList;
     }
 
-    public void setCoupon(Coupon coupon) {
-        this.coupon = coupon;
+    public void setCouponList(ArrayList<Coupon> couponList) {
+        this.couponList = couponList;
+    }
+
+    public Coupon getApplyCouponCode() {
+        return applyCouponCode;
+    }
+
+    public void setApplyCouponCode(Coupon applyCouponCode) {
+        this.applyCouponCode = applyCouponCode;
     }
 
     @Override
@@ -72,9 +99,7 @@ public abstract class Product {
         return "Product: " +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", quantityAvailable=" + quantityAvailable +
                 ", price=" + price +
-                ", coupon=" + coupon.toString() +
-                '.';
+                ", coupon=";
     }
 }

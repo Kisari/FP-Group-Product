@@ -1,6 +1,7 @@
 package s3852307.util;
 
 import s3852307.entities.Coupon;
+import s3852307.entities.CouponService;
 import s3852307.entities.PercentCoupon;
 import s3852307.entities.PriceCoupon;
 
@@ -80,8 +81,9 @@ public class Validation {
             }
         }
     }
-    private static ArrayList<Coupon> couponList = new ArrayList<Coupon>();
-    public static void inputCode(String message) {
+
+
+    public static Coupon inputCode(String message, CouponService couponList) {
 
         String inputCode = "";
         System.out.println(message);
@@ -92,29 +94,30 @@ public class Validation {
             case 1:
                 System.out.println("Enter the code of the coupon: ");
                 inputCode = ScannerUtil.getInstance().nextLine();
-                if (isCouponExisted(inputCode)) {
+                if (couponList.isCouponExisted(inputCode)) {
                     System.out.println("This code: " + inputCode + " already exists.");
-                    return;
+                    return null;
                 }
 
                 Coupon coupon1 = new PercentCoupon(inputCode, Validation.inputInt("Enter the discount percent: "));
-                couponList.add(coupon1);
-                break;
+                couponList.getCouponList().add(coupon1);
+                return coupon1;
 
             case 2:
                 System.out.println("Enter the code of the coupon: ");
                 inputCode = ScannerUtil.getInstance().nextLine();
-                if (isCouponExisted(inputCode)) {
+                if (couponList.isCouponExisted(inputCode)) {
                     System.out.println("This code: " + inputCode + " already exists.");
-                    return;
+                    return null;
                 }
 
-                Coupon coupon2 = new PriceCoupon(inputCode, Validation.inputDouble("Enter the discount percent: "));
-                couponList.add(coupon2);
-                break;
+                Coupon coupon2 = new PriceCoupon(inputCode, Validation.inputDouble("Enter the discount price: "));
+                couponList.getCouponList().add(coupon2);
+                return coupon2;
             default:
                 System.out.println("Invalid input! Please enter a valid choice");
         }
+        return null;
     }
 }
 

@@ -21,7 +21,7 @@ public class main {
         int choice;
         ProductService productService = new ProductService();
         ShoppingCartService shoppingCartService = new ShoppingCartService();
-        ShoppingCart shoppingCart = null;
+        ShoppingCart shoppingCart = new ShoppingCart();
         do {
             System.out.println("===========================================================");
             System.out.println("|                  FURTHER MANAGEMENT                     |");
