@@ -13,8 +13,8 @@ public class GiftDigitalProduct extends DigitalProduct{
         this.message = message;
     }
 
-    public GiftDigitalProduct(String name, String description, int quantityAvailable, double price, String message, TaxType taxRate) {
-        super(name, description, quantityAvailable, price, taxRate);
+    public GiftDigitalProduct(String name, String description, int quantityAvailable, double price, String message, TaxType taxRate, , Coupon coupon) {
+        super(name, description, quantityAvailable, price, taxRate, coupon);
         this.message = message;
     }
 

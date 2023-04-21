@@ -12,8 +12,8 @@ public class GiftPhysicalProduct extends PhysicalProduct{
         this.message = message;
     }
 
-    public GiftPhysicalProduct(String name, String description, int quantityAvailable, double price, double weight, String message, TaxType taxRate) {
-        super(name, description, quantityAvailable, price, weight, taxRate);
+    public GiftPhysicalProduct(String name, String description, int quantityAvailable, double price, double weight, String message, TaxType taxRate, Coupon coupon) {
+        super(name, description, quantityAvailable, price, weight, taxRate, , coupon);
         this.message = message;
     }
 

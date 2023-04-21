@@ -1,4 +1,5 @@
 package s3852307.main;
+import s3852307.entities.Coupon;
 import s3852307.entities.ShoppingCart;
 import s3852307.service.ProductService;
 import s3852307.service.ShoppingCartService;
@@ -7,6 +8,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+//import static s3852307.entities.Coupon.code;
+
 /**
  * @author <Nguyen Ha Minh Duy - s3852307>
  */
@@ -17,7 +21,7 @@ public class main {
         int choice;
         ProductService productService = new ProductService();
         ShoppingCartService shoppingCartService = new ShoppingCartService();
-        ShoppingCart shoppingCart = null;
+        ShoppingCart shoppingCart = new ShoppingCart();
         do {
             System.out.println("===========================================================");
             System.out.println("|                  FURTHER MANAGEMENT                     |");
@@ -31,10 +35,11 @@ public class main {
             System.out.println("|6. Display the cart amount                               |");
             System.out.println("|7. Display all shopping carts based on their total weight|");
             System.out.println("|8. Exit                                                  |");
+            System.out.println("|9. Apply Coupon                                          |");
             System.out.println("===========================================================");
             System.out.println("\n");
 
-            choice = Validation.inputChoice(1, 8);
+            choice = Validation.inputChoice(1, 9);
 
             switch (choice) {
                 case 1:
@@ -76,18 +81,19 @@ public class main {
                     System.out.println("|=========================|");
                     System.out.println("4. Add products to the current shopping cart");
                     System.out.println("|=========================|");
-                    shoppingCartService.addItem(shoppingCart.getItems(), Validation.inputProductName("Enter product name:"));
+                    shoppingCartService.addItem(shoppingCart.getItems(), Validation.inputProductName("Enter product name: "));
                         break;
                 case 5:
                     System.out.println("|=========================|");
                     System.out.println("5. Remove products from the current shopping cart");
                     System.out.println("|=========================|");
-                    shoppingCartService.removeItem(shoppingCart.getItems(),Validation.inputProductName("Enter product name:"));
+                    shoppingCartService.removeItem(shoppingCart.getItems(),Validation.inputProductName("Enter product name: "));
                     break;
                 case 6:
                     System.out.println("|=========================|");
                     System.out.println("6. Display the cart amount");
                     System.out.println("|=========================|");
+
                     System.out.println("Total amount: " + shoppingCartService.cartAmount(shoppingCart.getItems()));
                     break;
                 case 7:
@@ -104,6 +110,12 @@ public class main {
                     } else {
                         System.out.println("No shopping cart!");
                     }
+                    break;
+                case 9:
+                    System.out.println("|=========================|");
+                    System.out.println("9. Apply Coupon");
+                    System.out.println("|=========================|");
+                    shoppingCartService.applyCoupon(shoppingCart.getItems());
                     break;
                 case 8:
                     System.err.println("Exited!");
