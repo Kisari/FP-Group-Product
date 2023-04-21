@@ -1,7 +1,7 @@
 package s3852307.util;
 
 
-import s3852307.entities.TaxType;
+import s3852307.entities.*;
 
 /**
  * @author <Nguyen Ha Minh Duy - s3852307>

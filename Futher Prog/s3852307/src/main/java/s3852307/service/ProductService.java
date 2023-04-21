@@ -7,12 +7,6 @@ import s3852307.util.ScannerUtil;
 import s3852307.util.Validation;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
-
-import static s3852307.entities.TaxType.NORMAL_TAX;
-import static s3852307.entities.TaxType.TAX_FREE;
-import static s3852307.entities.TaxType.LUXURY_TAX;
 
 public class ProductService implements ProductInterface{
     private static List<Product> products = new ArrayList<Product>();

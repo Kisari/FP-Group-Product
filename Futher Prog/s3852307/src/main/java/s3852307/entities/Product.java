@@ -23,15 +23,13 @@ public abstract class Product {
 
     public Product() {
     }
-    public Product(String name, String description, int quantityAvailable, double price, TaxType taxRate) {
-
-    public Product(String name, String description, int quantityAvailable, double price, Coupon coupon) {
+    public Product(String name, String description, int quantityAvailable, double price, TaxType taxRate, Coupon coupon) {
         this.name = name;
         this.description = description;
         this.quantityAvailable = quantityAvailable;
         this.price = price;
-        this.couponList.add(coupon);
         this.tax = taxRate;
+        this.couponList.add(coupon);
     }
 
     public void addCoupon(Coupon coupon){
@@ -110,8 +108,7 @@ public abstract class Product {
                 ", description='" + description + '\'' +
                 ", quantityAvailable=" + quantityAvailable +
                 ", price=" + price +
-                ", taxType=" + tax;
-                ", price=" + price +
+                ", taxType=" + tax +
                 ", coupon=";
     }
 }
