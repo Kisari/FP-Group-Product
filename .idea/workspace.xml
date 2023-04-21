@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ee2e6459-9e9b-40e9-aa30-d1336543a530" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/entities/PhysicalProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/entities/PhysicalProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +14,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file:///private/var/folders/rg/yr8gzq6n2n9gx7sdmb5wqgvh0000gq/T/tmp_2317_Validation.class" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///private/var/folders/rg/yr8gzq6n2n9gx7sdmb5wqgvh0000gq/T/tmp_5_Validation.class" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///private/var/folders/rg/yr8gzq6n2n9gx7sdmb5wqgvh0000gq/T/tmp_9_Validation.class" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -49,5 +54,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
