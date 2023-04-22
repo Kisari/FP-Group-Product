@@ -3,7 +3,7 @@ package s3852307.entities;
  * @author <Nguyen Ha Minh Duy - s3852307>
  */
 
-public class GiftPhysicalProduct extends PhysicalProduct{
+public class GiftPhysicalProduct extends PhysicalProduct {
     private String message;
 
     public GiftPhysicalProduct() {
@@ -12,8 +12,8 @@ public class GiftPhysicalProduct extends PhysicalProduct{
         this.message = message;
     }
 
-    public GiftPhysicalProduct(String name, String description, int quantityAvailable, double price, double weight, String message, Coupon coupon) {
-        super(name, description, quantityAvailable, price, weight, coupon);
+    public GiftPhysicalProduct(String name, String description, int quantityAvailable, double price, double weight, String message, TaxType taxRate, Coupon coupon) {
+        super(name, description, quantityAvailable, price, weight, taxRate, coupon);
         this.message = message;
     }
 

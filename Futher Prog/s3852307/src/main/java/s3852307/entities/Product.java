@@ -10,28 +10,29 @@ public abstract class Product {
     private String name;
     private String description;
     private int quantityAvailable;
+    private TaxType tax;
     private double price;
     private ArrayList<Coupon> couponList = new ArrayList<Coupon>();
     private Coupon applyCouponCode;
+
+
+    public Product() {
+    }
+
+    public Product(String name, String description, int quantityAvailable, double price, TaxType taxRate, Coupon coupon) {
+        this.name = name;
+        this.description = description;
+        this.quantityAvailable = quantityAvailable;
+        this.price = price;
+        this.couponList.add(coupon);
+        this.tax = taxRate;
+    }
 
     public void printCouponList() {
         for (Coupon coupon : couponList) {
             System.out.println(coupon);
         }
     }
-
-    public Product() {
-    }
-
-    public Product(String name, String description, int quantityAvailable, double price, Coupon coupon) {
-        this.name = name;
-        this.description = description;
-        this.quantityAvailable = quantityAvailable;
-        this.price = price;
-        this.couponList.add(coupon);
-//        this.taxType = taxType;
-    }
-
     public void addCoupon(Coupon coupon){
         this.couponList.add(coupon);
     }
@@ -77,6 +78,13 @@ public abstract class Product {
     public void decreaseQuantity(int quantity) {
         this.quantityAvailable -= quantity;
     }
+    public TaxType getTaxType() {
+        return tax;
+    }
+
+    public void setTaxType(TaxType taxType) {
+        this.tax = taxType;
+    }
 
     public ArrayList<Coupon> getCouponList() {
         return couponList;
@@ -100,6 +108,6 @@ public abstract class Product {
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
-                ", coupon=";
+                ", taxType=" + tax;
     }
 }
