@@ -1,5 +1,10 @@
 package s3852307.util;
 
+import s3852307.entities.Coupon;
+import s3852307.entities.CouponService;
+import s3852307.entities.PercentCoupon;
+import s3852307.entities.PriceCoupon;
+
 import s3852307.entities.TaxType;
 
 /**
@@ -91,10 +96,43 @@ public class Validation {
         }
     }
 
-    // public static TaxType inputTaxType() {
-    // int choice = Validation.inputChoice(1, TaxType.values().length);
-    // return TaxType.values()[choice-1];
-    // }
+
+    public static Coupon inputCode(String message, CouponService couponList) {
+
+        String inputCode = "";
+        System.out.println(message);
+        System.out.println("1. PERCENT COUPON");
+        System.out.println("2. PRICE COUPON");
+        int choice = Validation.inputChoice(1, 2);
+        switch (choice) {
+            case 1:
+                System.out.println("Enter the code of the coupon: ");
+                inputCode = ScannerUtil.getInstance().nextLine();
+                if (couponList.isCouponExisted(inputCode)) {
+                    System.out.println("This code: " + inputCode + " already exists.");
+                    return null;
+                }
+
+                Coupon coupon1 = new PercentCoupon(inputCode, Validation.inputInt("Enter the discount percent: "));
+                couponList.getCouponList().add(coupon1);
+                return coupon1;
+
+            case 2:
+                System.out.println("Enter the code of the coupon: ");
+                inputCode = ScannerUtil.getInstance().nextLine();
+                if (couponList.isCouponExisted(inputCode)) {
+                    System.out.println("This code: " + inputCode + " already exists.");
+                    return null;
+                }
+
+                Coupon coupon2 = new PriceCoupon(inputCode, Validation.inputDouble("Enter the discount price: "));
+                couponList.getCouponList().add(coupon2);
+                return coupon2;
+            default:
+                System.out.println("Invalid input! Please enter a valid choice");
+        }
+        return null;
+    }
 
     public static TaxType inputTaxType(String message) {
         System.out.println(message);

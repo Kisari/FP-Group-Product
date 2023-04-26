@@ -19,6 +19,8 @@ import java.util.stream.Stream;
 import java.io.FileInputStream;
 import java.io.File;
 import java.io.ObjectInputStream;
+import java.util.Scanner;
+
 
 import static s3852307.entities.TaxType.NORMAL_TAX;
 import static s3852307.entities.TaxType.TAX_FREE;
@@ -26,15 +28,21 @@ import static s3852307.entities.TaxType.LUXURY_TAX;
 
 public class ProductService implements ProductInterface{
     private static List<Product> products = new ArrayList<Product>();
+    private static CouponService couponList = new CouponService();
+
+
     public static Product isProductExist(String productName) {
-        if(products == null) return null;
         for (Product product : products) {
-            if (product.getName().equals(productName)) return product;
+            if (product.getName().equals(productName)) {
+                return product;
+            }
         }
         return null;
     }
+
     @Override
     public void createProduct(String type) {
+        Scanner scanner = new Scanner(System.in);
         Product product = null;
         String productName = "";
         if (type.equals("DIGITAL")) {
@@ -56,10 +64,12 @@ public class ProductService implements ProductInterface{
         if (product instanceof PhysicalProduct) {
             ((PhysicalProduct) product).setWeight(Validation.inputDouble("Enter product weight: "));
         }
+        product.addCoupon(Validation.inputCode("Coupon Type Options...", couponList));
         product.setTaxType(Validation.inputTaxType("Tax type options ..."));
         products.add(product);
         System.out.println("Product created successfully!");
     }
+
     @Override
     public void updateProduct() {
         String productName = Validation.inputProductName("Enter product name: ");
