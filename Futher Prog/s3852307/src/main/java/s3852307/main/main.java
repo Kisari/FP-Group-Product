@@ -1,5 +1,4 @@
 package s3852307.main;
-
 import s3852307.entities.ShoppingCart;
 import s3852307.service.ProductService;
 import s3852307.service.ShoppingCartService;
@@ -43,6 +42,7 @@ public class main {
 
             switch (choice) {
                 case 1:
+                    productService.streamProduct(); 
                     System.out.println("|=========================|");
                     System.out.println("1. Create new products:");
                     System.out.println("|=========================|");
@@ -143,9 +143,11 @@ public class main {
                     shoppingCart = new ShoppingCart();
                     System.out.println("Printing receipt successfully! Creating a new shopping cart!");
                     break;
-                case 10:
+                case 11:
                     System.err.println("Exited!");
                     System.exit(0);
+                case 10:
+                    productService.streamProduct();
             }
             System.out.println("\n");
         } while (choice != 10);

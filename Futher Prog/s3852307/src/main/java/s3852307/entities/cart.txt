@@ -1,0 +1,9 @@
+"PHYSICAL - 1","1",1,1,1,TAX_FREE
+"PHYSICAL - 2","2",2,2,2,TAX_FREE
+true
+"PHYSICAL - 3","3",3,3,3,TAX_FREE
+"PHYSICAL - 4","4",4,4,4,NORMAL_TAX
+false
+
+
+
