@@ -35,12 +35,13 @@ public class main {
             System.out.println("|7. Display all shopping carts based on their total weight|");
             System.out.println("|8. Select unpaid cart to view details                    |");
             System.out.println("|9. Apply Coupon                                          |");
-            System.out.println("|10. Print the shopping cart receipt                       |");
-            System.out.println("|11. Exit                                                 |");
+            System.out.println("|10. Print the shopping cart receipt                      |");
+            System.out.println("|11. View Product                                         |");
+            System.out.println("|12. Exit                                                 |");
             System.out.println("===========================================================");
             System.out.println("\n");
 
-            choice = Validation.inputChoice(1, 11);
+            choice = Validation.inputChoice(1, 12);
 
             switch (choice) {
                 case 1:
@@ -152,10 +153,10 @@ public class main {
                     shoppingCart = new ShoppingCart();
                     System.out.println("Printing receipt successfully! Creating a new shopping cart!");
                     break;
-                case 11:
+                case 12:
                     System.err.println("Exited!");
                     System.exit(0);
-                case 10:
+                case 11:
                     productService.streamProduct();
             }
             System.out.println("\n");

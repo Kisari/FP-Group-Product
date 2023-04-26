@@ -28,6 +28,16 @@ public class CouponService {
         }
         return false;
     }
+
+    public static Coupon findCoupon(String code) {
+        for (Coupon coupon : couponList) {
+            if (coupon.getCode().equals(code)) {
+                System.out.println("This coupon code already exists");
+                return coupon;
+            }
+        }
+        return null;
+    }
 }
 
 

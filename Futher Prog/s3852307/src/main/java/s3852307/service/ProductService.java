@@ -21,7 +21,8 @@ import java.io.File;
 import java.io.ObjectInputStream;
 import java.util.Scanner;
 
-
+import s3852307.entities.Coupon;
+import s3852307.entities.CouponService;
 import static s3852307.entities.TaxType.NORMAL_TAX;
 import static s3852307.entities.TaxType.TAX_FREE;
 import static s3852307.entities.TaxType.LUXURY_TAX;
@@ -107,45 +108,46 @@ public class ProductService implements ProductInterface{
             c -> {
                 Product p = parseProduct(c);
                 products.add(p);
+                // System.out.println(p.getName());
             });
         } catch (IOException e) {
             // TODO: handle exception
         }
     }
 
-    public static void addTempProduct(){ // for testing purposes
-        Product product = new PhysicalProduct("PHYSICAL - 1","1",1,1,1, TAX_FREE);
-        Product product1 = new PhysicalProduct("PHYSICAL - 2","2",5,10,5, NORMAL_TAX);
-        Product product2 = new PhysicalProduct("PHYSICAL - 3","3",4,11,7, LUXURY_TAX);
-        Product product3 = new PhysicalProduct("PHYSICAL - 4","4",7,12,8,TAX_FREE);
-        Product product4 = new DigitalProduct("DIGITAL - 1","1",1,1,TAX_FREE);
-        Product product5 = new DigitalProduct("DIGITAL - 2","2",5,10,LUXURY_TAX);
-        Product product6 = new DigitalProduct("DIGITAL - 3","3",4,11,NORMAL_TAX);
-        Product product7 = new DigitalProduct("DIGITAL - 4","4",7,12,LUXURY_TAX);
-        products.add(product);
-        products.add(product1);
-        products.add(product2);
-        products.add(product3);
-        products.add(product4);
-        products.add(product5);
-        products.add(product6);
-        products.add(product7);
-    }
+    // public static void addTempProduct(){ // for testing purposes
+    //     Product product = new PhysicalProduct("PHYSICAL - 1","1",1,1,1, TAX_FREE);
+    //     Product product1 = new PhysicalProduct("PHYSICAL - 2","2",5,10,5, NORMAL_TAX);
+    //     Product product2 = new PhysicalProduct("PHYSICAL - 3","3",4,11,7, LUXURY_TAX);
+    //     Product product3 = new PhysicalProduct("PHYSICAL - 4","4",7,12,8,TAX_FREE);
+    //     Product product4 = new DigitalProduct("DIGITAL - 1","1",1,1,TAX_FREE);
+    //     Product product5 = new DigitalProduct("DIGITAL - 2","2",5,10,LUXURY_TAX);
+    //     Product product6 = new DigitalProduct("DIGITAL - 3","3",4,11,NORMAL_TAX);
+    //     Product product7 = new DigitalProduct("DIGITAL - 4","4",7,12,LUXURY_TAX);
+    //     products.add(product);
+    //     products.add(product1);
+    //     products.add(product2);
+    //     products.add(product3);
+    //     products.add(product4);
+    //     products.add(product5);
+    //     products.add(product6);
+    //     products.add(product7);
+    // }
 
 
     public Product parseProduct(String product) {
         String [] array = product.split("[,]", 0);
         if (array[0].contains("GiftDigitalProduct")) {
-            return new GiftDigitalProduct(array[0], array[1], Integer.parseInt(array[2]), Double.parseDouble(array[3]), array[4], TaxType.valueOf(array[5]));
+            return new GiftDigitalProduct(array[0], array[1], Integer.parseInt(array[2]), Double.parseDouble(array[3]), array[4], TaxType.valueOf(array[5]),CouponService.findCoupon(array[-1]));
         }
         else if(array[0].contains("GiftPhysicalProduct")) {
-            return new GiftPhysicalProduct(array[0], array[1], Integer.parseInt(array[2]), Double.parseDouble(array[3]), Double.parseDouble(array[4]), array[5],TaxType.valueOf(array[6]));
+            return new GiftPhysicalProduct(array[0], array[1], Integer.parseInt(array[2]), Double.parseDouble(array[3]), Double.parseDouble(array[4]), array[5],TaxType.valueOf(array[6]),CouponService.findCoupon(array[-1]));
         }
         else if(array[0].contains("PHYSICAL")) {
-            return new PhysicalProduct(array[0], array[1], Integer.parseInt(array[2]), Double.parseDouble(array[3]), Double.parseDouble(array[4]), TaxType.valueOf(array[5]));
+            return new PhysicalProduct(array[0], array[1], Integer.parseInt(array[2]), Double.parseDouble(array[3]), Double.parseDouble(array[4]), TaxType.valueOf(array[5]), CouponService.findCoupon(array[-1]));
         }
         else {
-            return new DigitalProduct(array[0], array[1], Integer.parseInt(array[2]), Double.parseDouble(array[3]), TaxType.valueOf(array[4]));
+            return new DigitalProduct(array[0], array[1], Integer.parseInt(array[2]), Double.parseDouble(array[3]), TaxType.valueOf(array[4]),CouponService.findCoupon(array[-1]));
         }
     }
 }
