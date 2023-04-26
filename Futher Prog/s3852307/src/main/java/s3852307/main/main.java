@@ -44,6 +44,7 @@ public class main {
 
             switch (choice) {
                 case 1:
+                    productService.streamProduct(); 
                     System.out.println("|=========================|");
                     System.out.println("1. Create new products:");
                     System.out.println("|=========================|");
@@ -154,6 +155,8 @@ public class main {
                 case 11:
                     System.err.println("Exited!");
                     System.exit(0);
+                case 10:
+                    productService.streamProduct();
             }
             System.out.println("\n");
         } while (choice != 10);

@@ -15,4 +15,5 @@ public enum TaxType {
         return taxRate;
     }
 
+    
 }
