@@ -18,7 +18,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
 
-
 public class ShoppingCartService implements ShoppingCartInterface {
     private Product product;
     private List<Product> items;
@@ -63,7 +62,6 @@ public class ShoppingCartService implements ShoppingCartInterface {
         }
     }
 
-
     @Override
     public Number[] cartAmount(Set<String> items) {
         Number[] results = new Number[] { 0, 0, 0 };
@@ -96,7 +94,6 @@ public class ShoppingCartService implements ShoppingCartInterface {
         Product product = null;
 
         for (String productName : items) {
-            System.out.println("debugging: " + productName);
             if (productName.equalsIgnoreCase(name)) {
                 product = ProductService.isProductExist(name);
                 break;
@@ -128,6 +125,7 @@ public class ShoppingCartService implements ShoppingCartInterface {
         }
         return true;
     }
+
     public void printCart(Set<String> items) {
         if (items == null || items.size() == 0) {
             System.out.println("Cart is empty!");
