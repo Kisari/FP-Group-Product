@@ -7,5 +7,6 @@ public interface ProductInterface {
     void createProduct(String type);
     void updateProduct() ;
     void deleteProduct();
+    void streamProduct();
 }
 

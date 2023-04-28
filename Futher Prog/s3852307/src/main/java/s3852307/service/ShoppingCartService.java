@@ -18,7 +18,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
 
-
 public class ShoppingCartService implements ShoppingCartInterface {
     private Product product;
     private List<Product> items;
@@ -63,7 +62,6 @@ public class ShoppingCartService implements ShoppingCartInterface {
         }
     }
 
-
     @Override
     public Number[] cartAmount(Set<String> items) {
         Number[] results = new Number[] { 0, 0, 0 };
@@ -75,13 +73,17 @@ public class ShoppingCartService implements ShoppingCartInterface {
         double tax = 0;
         for (String productName : items) {
             Product product = ProductService.isProductExist(productName);
-            if (product instanceof PhysicalProduct) {
-                amount += product.getPrice() + ((PhysicalProduct) product).getWeight() * Constant.baseFee;
-                totalWeight += ((PhysicalProduct) product).getWeight() * Constant.baseFee;
-            } else if (product instanceof DigitalProduct) {
+
+            if(product.getApplyCouponCode() != null) {
+                amount +=  product.getApplyCouponCode().applyToPrice(product.getPrice());
+            } else {
                 amount += product.getPrice();
             }
-            tax = product.getPrice() * product.getTaxType().getTaxRate();
+
+            if (product instanceof PhysicalProduct) {
+                totalWeight += ((PhysicalProduct) product).getWeight();
+            }
+            tax += (product.getPrice() * product.getTaxType().getTaxRate());
         }
         double shippingFee = totalWeight * Constant.baseFee;
         amount += shippingFee + tax;
@@ -96,7 +98,6 @@ public class ShoppingCartService implements ShoppingCartInterface {
         Product product = null;
 
         for (String productName : items) {
-            System.out.println("debugging: " + productName);
             if (productName.equalsIgnoreCase(name)) {
                 product = ProductService.isProductExist(name);
                 break;
@@ -128,6 +129,7 @@ public class ShoppingCartService implements ShoppingCartInterface {
         }
         return true;
     }
+
     public void printCart(Set<String> items) {
         if (items == null || items.size() == 0) {
             System.out.println("Cart is empty!");

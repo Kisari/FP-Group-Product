@@ -15,16 +15,16 @@ public abstract class Product {
     private ArrayList<Coupon> couponList = new ArrayList<Coupon>();
     private Coupon applyCouponCode;
 
-
     public Product() {
     }
 
-    public Product(String name, String description, int quantityAvailable, double price, TaxType taxRate, Coupon coupon) {
+    public Product(String name, String description, int quantityAvailable, double price, TaxType taxRate,
+            ArrayList<Coupon> couponList) {
         this.name = name;
         this.description = description;
         this.quantityAvailable = quantityAvailable;
         this.price = price;
-        this.couponList.add(coupon);
+        this.couponList = couponList;
         this.tax = taxRate;
     }
 
@@ -33,10 +33,10 @@ public abstract class Product {
             System.out.println(coupon);
         }
     }
-    public void addCoupon(Coupon coupon){
+
+    public void addCoupon(Coupon coupon) {
         this.couponList.add(coupon);
     }
-
 
     public String getName() {
         return name;
@@ -64,9 +64,9 @@ public abstract class Product {
 
     public double getPrice() {
         double price = this.price;
-        if (applyCouponCode != null) {
-            price = applyCouponCode.applyToPrice(this.price);
-        }
+//        if (applyCouponCode != null) {
+//            price = applyCouponCode.applyToPrice(this.price);
+//        }
 
         return price;
     }
@@ -78,6 +78,7 @@ public abstract class Product {
     public void decreaseQuantity(int quantity) {
         this.quantityAvailable -= quantity;
     }
+
     public TaxType getTaxType() {
         return tax;
     }

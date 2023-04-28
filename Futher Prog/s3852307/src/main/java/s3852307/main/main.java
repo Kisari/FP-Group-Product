@@ -1,4 +1,5 @@
 package s3852307.main;
+
 import s3852307.entities.Coupon;
 import s3852307.entities.ShoppingCart;
 import s3852307.service.ProductService;
@@ -21,26 +22,28 @@ public class main {
         ProductService productService = new ProductService();
         ShoppingCartService shoppingCartService = new ShoppingCartService();
         ShoppingCart shoppingCart = new ShoppingCart();
+        productService.streamProduct();
         do {
             System.out.println("===========================================================");
             System.out.println("|                  FURTHER MANAGEMENT                     |");
             System.out.println("|=========================================================|");
             System.out.println("|=========================================================|");
-            System.out.println("|1. Create new products:                                  |");
-            System.out.println("|2. Edit products:                                        |");
-            System.out.println("|3. Create a new shopping cart:                           |");
+            System.out.println("|1. Create new products                                   |");
+            System.out.println("|2. Edit products                                         |");
+            System.out.println("|3. Create a new shopping cart                            |");
             System.out.println("|4. Add products to the current shopping cart             |");
             System.out.println("|5. Remove products from the current shopping cart        |");
             System.out.println("|6. Display the cart amount                               |");
             System.out.println("|7. Display all shopping carts based on their total weight|");
             System.out.println("|8. Select unpaid cart to view details                    |");
             System.out.println("|9. Apply Coupon                                          |");
-            System.out.println("|10. Print the shopping cart receipt                       |");
-            System.out.println("|11. Exit                                                 |");
+            System.out.println("|10. Print the shopping cart receipt                      |");
+            System.out.println("|11. View Product                                         |");
+            System.out.println("|12. Exit                                                 |");
             System.out.println("===========================================================");
             System.out.println("\n");
 
-            choice = Validation.inputChoice(1, 11);
+            choice = Validation.inputChoice(1, 12);
 
             switch (choice) {
                 case 1:
@@ -82,13 +85,19 @@ public class main {
                     System.out.println("|=========================|");
                     System.out.println("4. Add products to the current shopping cart");
                     System.out.println("|=========================|");
-                    shoppingCartService.addItem(shoppingCart.getItems(), Validation.inputProductName("Enter product name: "));
+                    productService.printProduct();
+                    System.out.println("|=========================|");
+                    shoppingCartService.addItem(shoppingCart.getItems(),
+                            Validation.inputProductName("Enter product name: "));
                     break;
                 case 5:
                     System.out.println("|=========================|");
                     System.out.println("5. Remove products from the current shopping cart");
                     System.out.println("|=========================|");
-                    shoppingCartService.removeItem(shoppingCart.getItems(),Validation.inputProductName("Enter product name: "));
+                    productService.printProduct();
+                    System.out.println("|=========================|");
+                    shoppingCartService.removeItem(shoppingCart.getItems(),
+                            Validation.inputProductName("Enter product name: "));
                     shoppingCartService.removeItem(shoppingCart.getItems(),
                             Validation.inputProductName("Enter product name:"));
                     break;
@@ -96,7 +105,6 @@ public class main {
                     System.out.println("|=========================|");
                     System.out.println("6. Display the cart amount");
                     System.out.println("|=========================|");
-                    System.out.println("Total amount: " + shoppingCartService.cartAmount(shoppingCart.getItems()));
                     System.out.println("Total amount: " + shoppingCartService.cartAmount(shoppingCart.getItems())[0]);
                     break;
                 case 7:
@@ -152,6 +160,9 @@ public class main {
                     System.out.println("Printing receipt successfully! Creating a new shopping cart!");
                     break;
                 case 11:
+                    productService.streamProduct();
+                    break;
+                case 12:
                     System.err.println("Exited!");
                     System.exit(0);
             }

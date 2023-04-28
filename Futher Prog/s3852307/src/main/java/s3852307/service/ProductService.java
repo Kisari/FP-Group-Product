@@ -1,23 +1,37 @@
 package s3852307.service;
+
 /**
  * @author <Nguyen Ha Minh Duy - s3852307>
  */
-import s3852307.entities.*;
+import s3852307.entities.DigitalProduct;
+import s3852307.entities.GiftDigitalProduct;
+import s3852307.entities.GiftPhysicalProduct;
+import s3852307.entities.PhysicalProduct;
+import s3852307.entities.Product;
+import s3852307.entities.TaxType;
 import s3852307.util.ScannerUtil;
 import s3852307.util.Validation;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
+import java.io.FileInputStream;
+import java.io.File;
+import java.io.ObjectInputStream;
 import java.util.Scanner;
 
-
+import s3852307.entities.Coupon;
+import s3852307.entities.CouponService;
 import static s3852307.entities.TaxType.NORMAL_TAX;
 import static s3852307.entities.TaxType.TAX_FREE;
 import static s3852307.entities.TaxType.LUXURY_TAX;
 
-public class ProductService implements ProductInterface{
+public class ProductService implements ProductInterface {
     private static List<Product> products = new ArrayList<Product>();
     private static CouponService couponList = new CouponService();
-
 
     public static Product isProductExist(String productName) {
         for (Product product : products) {
@@ -76,6 +90,7 @@ public class ProductService implements ProductInterface{
         product.setTaxType(Validation.inputTaxType("Tax type options ..."));
         System.out.println("Product updated successfully!");
     }
+
     @Override
     public void deleteProduct() {
         String productName = Validation.inputProductName("Enter product name: ");
@@ -86,5 +101,52 @@ public class ProductService implements ProductInterface{
         }
         products.remove(product);
     }
-}
 
+    @Override
+    public void streamProduct() {
+        // sửa lại file path
+        String fileName = "Futher Prog/s3852307/src/main/java/s3852307/entities/product.txt";
+        try {
+            Files.lines(Paths.get(fileName)).filter(l -> l.length() > 0).map(line -> line.toString()).forEach(
+                    c -> {
+                        Product p = parseProduct(c);
+                        products.add(p);
+                        System.out.println("Successfully loading the product...");
+                    });
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    public Product parseProduct(String product) {
+        String[] array = product.split("[,]", 0);
+        String[] couponStringList = null;
+        if (array[0].contains("GiftDigitalProduct")) {
+            couponStringList = Arrays.copyOfRange(array, 6, array.length);
+            return new GiftDigitalProduct(array[0], array[1], Integer.parseInt(array[2]), Double.parseDouble(array[3]),
+                    array[4], TaxType.valueOf(array[5]), CouponService.parseFromStringToCoupon(couponStringList));
+        } else if (array[0].contains("GiftPhysicalProduct")) {
+            couponStringList = Arrays.copyOfRange(array, 7, array.length);
+            return new GiftPhysicalProduct(array[0], array[1], Integer.parseInt(array[2]), Double.parseDouble(array[3]),
+                    Double.parseDouble(array[4]), array[5], TaxType.valueOf(array[6]),
+                    CouponService.parseFromStringToCoupon(couponStringList));
+        } else if (array[0].contains("PHYSICAL")) {
+            couponStringList = Arrays.copyOfRange(array, 6, array.length);
+            return new PhysicalProduct(array[0], array[1], Integer.parseInt(array[2]), Double.parseDouble(array[3]),
+                    Double.parseDouble(array[4]), TaxType.valueOf(array[5]),
+                    CouponService.parseFromStringToCoupon(couponStringList));
+        } else {
+            couponStringList = Arrays.copyOfRange(array, 5, array.length);
+            return new DigitalProduct(array[0], array[1], Integer.parseInt(array[2]), Double.parseDouble(array[3]),
+                    TaxType.valueOf(array[4]),
+                    CouponService.parseFromStringToCoupon(couponStringList));
+        }
+    }
+
+    public void printProduct() {
+        for (int i = 0; i < products.size(); i++) {
+            System.out.println((i + 1) + "." + products.get(i).getName());
+        }
+    }
+}
