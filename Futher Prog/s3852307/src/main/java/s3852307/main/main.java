@@ -74,7 +74,7 @@ public class main {
                     System.out.println("|=========================|");
                     System.out.println("3. Create a new shopping cart:");
                     System.out.println("|=========================|");
-                    if (shoppingCart != null) {
+                    if (shoppingCart.getItems().size() != 0 && shoppingCarts.contains(shoppingCart) == false) {
                         shoppingCarts.add(shoppingCart);
                     }
                     shoppingCart = new ShoppingCart();
@@ -111,8 +111,8 @@ public class main {
                     System.out.println("|=========================|");
                     System.out.println("7. Display all shopping carts based on their total weight");
                     System.out.println("|=========================|");
-                    if (shoppingCarts != null) {
-                        if (shoppingCart != null && shoppingCarts.contains(shoppingCart) == false)
+                    if (shoppingCarts.size() != 0) {
+                        if (shoppingCart.getItems().size() != 0 && shoppingCarts.contains(shoppingCart) == false)
                             shoppingCarts.add(shoppingCart);
                         Collections.sort(shoppingCarts);
                         for (ShoppingCart shoppingCartInLoop : shoppingCarts) {
