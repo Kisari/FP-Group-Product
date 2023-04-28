@@ -4,41 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee2e6459-9e9b-40e9-aa30-d1336543a530" name="Changes" comment="dorime dorime dorime">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Futher Prog/s3852307/s3852307.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/entities/DigitalProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/entities/DigitalProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/entities/GiftDigitalProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/entities/GiftDigitalProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/entities/GiftPhysicalProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/entities/GiftPhysicalProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/entities/PhysicalProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/entities/PhysicalProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/entities/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/entities/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/entities/ShoppingCart.java" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/entities/ShoppingCart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/entities/TaxType.java" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/entities/TaxType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/main/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/main/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/service/ShoppingCartInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/service/ShoppingCartInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/service/ShoppingCartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/service/ShoppingCartService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/util/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/util/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/util/Validation.java" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/src/main/java/s3852307/util/Validation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/entities/DigitalProduct.class" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/entities/DigitalProduct.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/entities/GiftDigitalProduct.class" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/entities/GiftDigitalProduct.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/entities/GiftPhysicalProduct.class" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/entities/GiftPhysicalProduct.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/entities/PhysicalProduct.class" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/entities/PhysicalProduct.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/entities/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/entities/Product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/entities/ShoppingCart.class" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/entities/ShoppingCart.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/entities/TaxType.class" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/entities/TaxType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/main/main.class" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/main/main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/service/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/service/ProductService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/service/ShoppingCartInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/service/ShoppingCartInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/service/ShoppingCartService.class" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/service/ShoppingCartService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/util/Constant.class" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/util/Constant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/util/Validation.class" beforeDir="false" afterPath="$PROJECT_DIR$/Futher Prog/s3852307/target/classes/s3852307/util/Validation.class" afterDir="false" />
-    </list>
+    <list default="true" id="ee2e6459-9e9b-40e9-aa30-d1336543a530" name="Changes" comment="dorime dorime dorime" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,7 +34,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Merging jamesdinhh",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -87,6 +53,7 @@
       <workItem from="1681830484314" duration="116000" />
       <workItem from="1681830613166" duration="17000" />
       <workItem from="1682153101816" duration="658000" />
+      <workItem from="1682644621574" duration="562000" />
     </task>
     <servers />
   </component>

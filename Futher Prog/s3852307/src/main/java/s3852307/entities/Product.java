@@ -64,9 +64,9 @@ public abstract class Product {
 
     public double getPrice() {
         double price = this.price;
-        if (applyCouponCode != null) {
-            price = applyCouponCode.applyToPrice(this.price);
-        }
+//        if (applyCouponCode != null) {
+//            price = applyCouponCode.applyToPrice(this.price);
+//        }
 
         return price;
     }

@@ -73,13 +73,17 @@ public class ShoppingCartService implements ShoppingCartInterface {
         double tax = 0;
         for (String productName : items) {
             Product product = ProductService.isProductExist(productName);
-            if (product instanceof PhysicalProduct) {
-                amount += product.getPrice() + ((PhysicalProduct) product).getWeight() * Constant.baseFee;
-                totalWeight += ((PhysicalProduct) product).getWeight() * Constant.baseFee;
-            } else if (product instanceof DigitalProduct) {
+
+            if(product.getApplyCouponCode() != null) {
+                amount +=  product.getApplyCouponCode().applyToPrice(product.getPrice());
+            } else {
                 amount += product.getPrice();
             }
-            tax = product.getPrice() * product.getTaxType().getTaxRate();
+
+            if (product instanceof PhysicalProduct) {
+                totalWeight += ((PhysicalProduct) product).getWeight();
+            }
+            tax += (product.getPrice() * product.getTaxType().getTaxRate());
         }
         double shippingFee = totalWeight * Constant.baseFee;
         amount += shippingFee + tax;
