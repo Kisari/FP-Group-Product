@@ -1,0 +1,7 @@
+"PHYSICAL - 1","1",1,1,1,TAX_FREE
+"PHYSICAL - 2","2",2,2,2,TAX_FREE
+21323 percent 10,asdas price 50,hello percent 50,hi percent 80,bay price 100 lưu trong ProductService với variable couponList (dòng 34)
+couponName type discount,couponName type discount
+"PHYSICAL - 3","3",3,3,3,TAX_FREE
+"PHYSICAL - 4","4",4,4,4,NORMAL_TAX
+21323 percent 10,asdas price 50,hello percent 50
