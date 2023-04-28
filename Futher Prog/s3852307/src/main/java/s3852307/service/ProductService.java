@@ -82,13 +82,13 @@ public class ProductService implements ProductInterface{
 
 //    public static void addTempProduct(){ // for testing purposes
 //        Product product = new PhysicalProduct("PHYSICAL - 1","1",1,1,1, TAX_FREE);
-//        Product product1 = new PhysicalProduct("PHYSICAL - 2","2",5,10,5, NORMAL_TAX);
-//        Product product2 = new PhysicalProduct("PHYSICAL - 3","3",4,11,7, LUXURY_TAX);
+//        Product product1 = new PhysicalProduct("PHYSICAL - 2","2",5,10,5, TAX_NORMAL);
+//        Product product2 = new PhysicalProduct("PHYSICAL - 3","3",4,11,7, TAX_LUXURY);
 //        Product product3 = new PhysicalProduct("PHYSICAL - 4","4",7,12,8,TAX_FREE);
 //        Product product4 = new DigitalProduct("DIGITAL - 1","1",1,1,TAX_FREE);
-//        Product product5 = new DigitalProduct("DIGITAL - 2","2",5,10,LUXURY_TAX);
-//        Product product6 = new DigitalProduct("DIGITAL - 3","3",4,11, NORMAL_TAX);
-//        Product product7 = new DigitalProduct("DIGITAL - 4","4",7,12,LUXURY_TAX);
+//        Product product5 = new DigitalProduct("DIGITAL - 2","2",5,10,TAX_LUXURY);
+//        Product product6 = new DigitalProduct("DIGITAL - 3","3",4,11, TAX_NORMAL);
+//        Product product7 = new DigitalProduct("DIGITAL - 4","4",7,12,TAX_LUXURY);
 //        products.add(product);
 //        products.add(product1);
 //        products.add(product2);

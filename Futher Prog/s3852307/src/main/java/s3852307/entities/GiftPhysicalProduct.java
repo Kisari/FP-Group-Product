@@ -13,7 +13,7 @@ public class GiftPhysicalProduct extends PhysicalProduct{
     }
 
     public GiftPhysicalProduct(String name, String description, int quantityAvailable, double price, double weight, String message, TaxType taxRate, Coupon coupon) {
-        super(name, description, quantityAvailable, price, weight, taxRate, , coupon);
+        super(name, description, quantityAvailable, price, weight, taxRate , coupon);
         this.message = message;
     }
 
