@@ -1,0 +1,40 @@
+PHYSICAL - Book,Novel,5,20,1,TAX_FREE,hello percent 10,hi price 50,world percent 50
+PHYSICAL - SamsungS21,256GB,7,50,0.2,TAX_FREE,
+PHYSICAL - Apple12,128GB,3,129.99,0.3,TAX_FREE
+PHYSICAL - Dell13,Intel Core i7,15,1599,1.3,NORMAL_TAX
+PHYSICAL - Headphones,Noise Cancelling,20,35,0.1,NORMAL_TAX
+PHYSICAL - TV,Smart TV,8,2299,20,NORMAL_TAX
+PHYSICAL - SonyHeadphones,Hi-Res Audio,12,349,0.32,LUXURY_TAX
+PHYSICAL - Google5,128GB,7,299.99,0.15,LUXURY_TAX
+PHYSICAL - MicrosoftSurface,13.5inch Touchscreen,20,1399,1.3,LUXURY_TAX
+PHYSICAL - Cleaner,Lightweight,6,499.99,2.58,LUXURY_TAX
+DIGITAL - MicrosoftOffice365,productive,10,100,TAX_FREE
+DIGITAL - PhotoshopCC,design,5,20,TAX_FREE
+DIGITAL - NFT,fintech,10,50,TAX_FREE
+DIGITAL - AppleMusic,music,100,3,NORMAL_TAX
+DIGITAL - Spotify,music,100,2.8,NORMAL_TAX
+DIGITAL - CloudSubscription,cloud,10,100,NORMAL_TAX
+DIGITAL - NetflixPlan,entertainment,10,10,LUXURY_TAX
+DIGITAL - DropboxPlus,files,10,14,LUXURY_TAX
+DIGITAL - NFT,fintech,10,50,LUXURY_TAX
+DIGITAL - NotionPremium,productive,20,15,LUXURY_TAX
+GiftPhysicalProduct - Book,romance,5,20,1,this is a gift for you,TAX_FREE,hello percent 10,hi price 50,world percent 50
+GiftPhysicalProduct - Phone,64GB,5,22,0.5,wishing you all the happiness,TAX_FREE
+GiftPhysicalProduct - Laptop,Intel core i9,5,2399,5,brighten your day!,TAX_FREE
+GiftPhysicalProduct - Bottle,Basic,10,5,0.1,you deserve the best,NORMAL_TAX
+GiftPhysicalProduct - Earphones,Apple,5,10,0.2,bring a smile to your face,NORMAL_TAX
+GiftPhysicalProduct - Headphone,Sony,6,15,0.5,you're one of a kind,NORMAL_TAX
+GiftPhysicalProduct - Airpod,Apple,7,30,0.5,my appreciation,LUXURY_TAX
+GiftPhysicalProduct - Glasses,Basic,8,10,0.1,good wishes,LUXURY_TAX
+GiftPhysicalProduct - Keyboard,Basic,9,20,0.7,a little brighter,LUXURY_TAX
+GiftPhysicalProduct - Wallet,Basic,10,8,0.1,how much you mean to me,LUXURY_TAX
+GiftDigitalProduct - NFT,fintech,10,5,hope this gift brings joy,TAX_FREE
+GiftDigitalProduct - Songs,music,5,2,bring you comfort and peace,TAX_FREE
+GiftDigitalProduct - Films,film,5,2,a gift to celebrate your special day,TAX_FREE
+GiftDigitalProduct - Ebook,novel,10,3,congratulations on your accomplishment,NORMAL_TAX
+GiftDigitalProduct - Game,entertainment,10,35,a little extra sparkle to your day,NORMAL_TAX
+GiftDigitalProduct - Card,service,100,2,you deserve nothing but the best,NORMAL_TAX
+GiftDigitalProduct - Card,service,100,2,best wishes,LUXURY_TAX
+GiftDigitalProduct - Game,entertainment,10,25,a little brighter,LUXURY_TAX
+GiftDigitalProduct - GiftCard,gift,10,5,brighten your day,LUXURY_TAX
+GiftDigitalProduct - GiftCard,gift,10,5,how much you mean to me,LUXURY_TAX
