@@ -7,7 +7,7 @@ import java.util.Set;
  */
 
 public class ShoppingCart implements Comparable<ShoppingCart> {
-    private Set<String> items;
+    private static Set<String> items;
 
     public ShoppingCart() {
         this.items = new HashSet<>();
@@ -29,16 +29,9 @@ public class ShoppingCart implements Comparable<ShoppingCart> {
     public int compareTo(ShoppingCart otherCart) {
         double thisTotalWeight = this.getTotalWeight();
         double otherTotalWeight = otherCart.getTotalWeight();
-
-        if (thisTotalWeight < otherTotalWeight) {
-            return -1;
-        } else if (thisTotalWeight > otherTotalWeight) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return Double.compare(thisTotalWeight, otherTotalWeight);
     }
-    public double getTotalWeight(){
+    public static double getTotalWeight(){
         double totalWeight = 0;
         for (String productName : items) {
             Product product = ProductService.isProductExist(productName);
@@ -48,4 +41,6 @@ public class ShoppingCart implements Comparable<ShoppingCart> {
         }
         return totalWeight;
     }
+
+
 }

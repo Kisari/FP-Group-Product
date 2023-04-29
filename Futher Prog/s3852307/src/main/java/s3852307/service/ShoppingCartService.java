@@ -15,6 +15,9 @@ public class ShoppingCartService implements ShoppingCartInterface {
     private List<Product> items;
     private Coupon coupon;
 
+    public ShoppingCartService() {
+    }
+
     @Override
     public boolean addItem(Set<String> items, String productName) {
         Product product = ProductService.isProductExist(productName);

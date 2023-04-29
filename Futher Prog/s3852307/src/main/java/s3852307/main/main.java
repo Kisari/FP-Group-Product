@@ -7,6 +7,7 @@ import s3852307.util.Validation;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 //import static s3852307.entities.Coupon.code;
@@ -21,7 +22,7 @@ public class main {
         int choice;
         ProductService productService = new ProductService();
         ShoppingCartService shoppingCartService = new ShoppingCartService();
-        ShoppingCart shoppingCart = new ShoppingCart();
+        ShoppingCart shoppingCart = null;
         do {
             System.out.println("===========================================================");
             System.out.println("|                  FURTHER MANAGEMENT                     |");
@@ -81,7 +82,11 @@ public class main {
                     System.out.println("|=========================|");
                     System.out.println("4. Add products to the current shopping cart");
                     System.out.println("|=========================|");
-                    shoppingCartService.addItem(shoppingCart.getItems(), Validation.inputProductName("Enter product name: "));
+                    if (shoppingCart != null) {
+                        shoppingCartService.addItem(shoppingCart.getItems(), Validation.inputProductName("Enter product name: "));
+                    } else {
+                        System.out.println("Please create a new cart first (option 3) before adding products to it!");
+                    }
                         break;
                 case 5:
                     System.out.println("|=========================|");
@@ -93,7 +98,6 @@ public class main {
                     System.out.println("|=========================|");
                     System.out.println("6. Display the cart amount");
                     System.out.println("|=========================|");
-
                     System.out.println("Total amount: " + shoppingCartService.cartAmount(shoppingCart.getItems()));
                     break;
                 case 7:
@@ -101,10 +105,11 @@ public class main {
                     System.out.println("7. Display all shopping carts based on their total weight");
                     System.out.println("|=========================|");
                     if(shoppingCarts != null) {
-                        if(shoppingCart != null && shoppingCarts.contains(shoppingCart) == false)
+                        if(shoppingCart != null && !shoppingCarts.contains(shoppingCart))
                             shoppingCarts.add(shoppingCart);
                         Collections.sort(shoppingCarts);
                         for (ShoppingCart shoppingCartInLoop: shoppingCarts) {
+                            System.out.println("This cart total weight >> " + shoppingCartInLoop.getTotalWeight());
                             shoppingCartService.printCart(shoppingCartInLoop.getItems());
                         }
                     } else {
@@ -124,5 +129,6 @@ public class main {
             System.out.println("\n");
         } while (choice != 8);
     }
+
 }
 
