@@ -38,5 +38,3 @@ GiftDigitalProduct - Card1,service,50,2,you deserve nothing but the best,NORMAL_
 GiftDigitalProduct - Card2,service,100,2,best wishes,LUXURY_TAX,AUTUMN10 price 10
 GiftDigitalProduct - GiftCard1,gift,10,5,brighten your day,LUXURY_TAX,HAPPYHOUR5 percent 5
 GiftDigitalProduct - GiftCard2,gift,10,5,how much you mean to me,LUXURY_TAX,HAPPYHOUR6 percent 6
-
-

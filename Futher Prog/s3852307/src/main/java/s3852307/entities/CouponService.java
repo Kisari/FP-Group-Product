@@ -1,5 +1,4 @@
 package s3852307.entities;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,16 +27,6 @@ public class CouponService {
         }
         return false;
     }
-
-    // public static Coupon findCoupon(String code) {
-    // for (Coupon coupon : couponList) {
-    // if (coupon.getCode().equals(code)) {
-    // System.out.println("This coupon code already exists");
-    // return coupon;
-    // }
-    // }
-    // return null;
-    // }
 
     public static ArrayList<Coupon> parseFromStringToCoupon(String[] couponStringList) {
         if (couponStringList.length == 0) {

@@ -4,19 +4,19 @@ package s3852307.service;
  * @author <Nguyen Ha Minh Duy - s3852307>
  */
 import s3852307.entities.*;
-import s3852307.entities.DigitalProduct;
-import s3852307.entities.PhysicalProduct;
-import s3852307.entities.Product;
-import s3852307.entities.ShoppingCart;
 import s3852307.util.Constant;
 import s3852307.util.Validation;
 
 import java.util.List;
 import java.util.Scanner;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ShoppingCartService implements ShoppingCartInterface {
     private Product product;
@@ -69,7 +69,6 @@ public class ShoppingCartService implements ShoppingCartInterface {
             return results;
         double amount = 0;
         double totalWeight = 0;
-
         double tax = 0;
         for (String productName : items) {
             Product product = ProductService.isProductExist(productName);
@@ -90,6 +89,78 @@ public class ShoppingCartService implements ShoppingCartInterface {
         results = new Number[] { amount, tax, shippingFee };
         return results;
     }
+    // FP-Group-Product\Futher Prog\s3852307\src\main\java\s3852307\entities\cart.txt
+    @Override
+    public CouponService streamCart(CouponService couponService) {
+        String filePath = "FP-Group-Product/Futher Prog/s3852307/src/main/java/s3852307/entities/cart.txt";
+        ArrayList<Coupon> result = new ArrayList<>();
+        try {
+            Files.lines(Paths.get(filePath)).filter(l -> l.length() > 0).map(line -> line.toString()).forEach(
+                s -> {
+                    s = s.trim();
+                    if (!ProductService.checkProduct(s)) {
+                        Coupon coupon;
+                        String[] couponCodes = s.split(",");
+                        for (String string : couponCodes) {
+                            if(string.contains("percent")){
+                                String[] splitCode =  new String[3];
+                                splitCode =  string.trim().split(" ");
+                                coupon = new PercentCoupon(splitCode[0],Integer.parseInt(splitCode[2]));
+                                result.add(coupon);
+                            } else if(string.contains("price")){
+                                String[] splitCode =  new String[3];
+                                splitCode =  string.trim().split(" ");
+                                coupon = new PriceCoupon(splitCode[0],Integer.parseInt(splitCode[2]));
+                                result.add(coupon);
+                            }
+                        }
+                    }
+                }
+            );
+
+            for (Coupon coupon: result) {
+                System.out.println(coupon);
+            }
+
+            couponService.setCouponList(result);
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.out.println(e.getLocalizedMessage());
+            e.printStackTrace();
+        }
+        return couponService;
+    }
+    public ShoppingCart streamCart(ShoppingCart shoppingCart) {
+        String filePath = "D:\\FP\\FP-Group-Product\\Futher Prog\\s3852307\\src\\main\\java\\s3852307\\entities\\cart.txt";
+        ProductService productService = new ProductService();
+        Set<String> itemInCart = shoppingCart.getItems();
+        try {
+            Files.lines(Paths.get(filePath)).filter(l -> l.length() > 0).map(line -> line.toString()).forEach(
+                    s -> {
+                        s = s.trim();
+                        if (ProductService.checkProduct(s)) {
+                            Product product = productService.parseProduct(s);
+                            if(Validation.isPhysicalProductGiftName(product.getName())||
+                                    Validation.isDigitalProductGiftName(product.getName())||
+                                    Validation.isPhysicalProductName(product.getName())||
+                                    Validation.isDigitalProductName(product.getName()))
+                            itemInCart.add(product.getName());
+                        }
+                    }
+            );
+            for (String products: shoppingCart.getItems() ) {
+                System.out.println(products);
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.out.println(e.getLocalizedMessage());
+            e.printStackTrace();
+        }
+        return shoppingCart;
+    }
+
+
 
     public boolean applyCoupon(Set<String> items) {
         Scanner scanner = new Scanner(System.in);
@@ -155,4 +226,7 @@ public class ShoppingCartService implements ShoppingCartInterface {
         Validation.printDelimiter();
         shoppingCart.setPaid(paidStatus);
     }
+
+
+
 }

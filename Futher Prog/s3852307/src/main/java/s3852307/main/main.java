@@ -1,6 +1,7 @@
 package s3852307.main;
 
 import s3852307.entities.Coupon;
+import s3852307.entities.CouponService;
 import s3852307.entities.ShoppingCart;
 import s3852307.service.ProductService;
 import s3852307.service.ShoppingCartService;
@@ -39,11 +40,12 @@ public class main {
             System.out.println("|9. Apply Coupon                                          |");
             System.out.println("|10. Print the shopping cart receipt                      |");
             System.out.println("|11. View Product                                         |");
-            System.out.println("|12. Exit                                                 |");
+            System.out.println("|12. View exist cart                                      |");
+            System.out.println("|13. Exit                                                 |");
             System.out.println("===========================================================");
             System.out.println("\n");
 
-            choice = Validation.inputChoice(1, 12);
+            choice = Validation.inputChoice(1, 13);
 
             switch (choice) {
                 case 1:
@@ -74,7 +76,7 @@ public class main {
                     System.out.println("|=========================|");
                     System.out.println("3. Create a new shopping cart:");
                     System.out.println("|=========================|");
-                    if (shoppingCart.getItems().size() != 0 && shoppingCarts.contains(shoppingCart) == false) {
+                    if (shoppingCart != null && !shoppingCarts.contains(shoppingCart)) {
                         shoppingCarts.add(shoppingCart);
                     }
                     shoppingCart = new ShoppingCart();
@@ -88,7 +90,7 @@ public class main {
                     productService.printProduct();
                     System.out.println("|=========================|");
                     shoppingCartService.addItem(shoppingCart.getItems(),
-                            Validation.inputProductName("Enter product name: "));
+                            Validation.inputProductName("Enter product name(Format: DIGITAL - NAME) : "));
                     break;
                 case 5:
                     System.out.println("|=========================|");
@@ -163,10 +165,14 @@ public class main {
                     productService.streamProduct();
                     break;
                 case 12:
+                    shoppingCartService.streamCart(shoppingCart);
+                    // shoppingCartService.streamCart(new CouponService());
+                    break;
+                case 13:
                     System.err.println("Exited!");
                     System.exit(0);
             }
             System.out.println("\n");
-        } while (choice != 10);
+        } while (choice != 13);
     }
 }
