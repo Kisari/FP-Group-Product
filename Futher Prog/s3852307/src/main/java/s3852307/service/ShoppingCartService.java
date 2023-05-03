@@ -92,7 +92,7 @@ public class ShoppingCartService implements ShoppingCartInterface {
     // FP-Group-Product\Futher Prog\s3852307\src\main\java\s3852307\entities\cart.txt
     @Override
     public CouponService streamCart(CouponService couponService) {
-        String filePath = "FP-Group-Product/Futher Prog/s3852307/src/main/java/s3852307/entities/cart.txt";
+        String filePath = "Futher Prog/s3852307/src/main/java/s3852307/entities/cart.txt";
         ArrayList<Coupon> result = new ArrayList<>();
         try {
             Files.lines(Paths.get(filePath)).filter(l -> l.length() > 0).map(line -> line.toString()).forEach(
@@ -131,7 +131,7 @@ public class ShoppingCartService implements ShoppingCartInterface {
         return couponService;
     }
     public ShoppingCart streamCart(ShoppingCart shoppingCart) {
-        String filePath = "D:\\FP\\FP-Group-Product\\Futher Prog\\s3852307\\src\\main\\java\\s3852307\\entities\\cart.txt";
+        String filePath = "FP-Group-Product/Futher Prog/s3852307/src/main/java/s3852307/entities/cart.txt";
         ProductService productService = new ProductService();
         Set<String> itemInCart = shoppingCart.getItems();
         try {
@@ -209,7 +209,13 @@ public class ShoppingCartService implements ShoppingCartInterface {
         System.out.println("Items in cart:");
         for (String productName : items) {
             Product product = ProductService.isProductExist(productName);
-            System.out.println(product);
+            System.out.print(product);
+            if(product instanceof PhysicalProduct){
+                System.out.print("|| Weight: "+ ((PhysicalProduct) product).getWeight());
+            } else if(product instanceof GiftPhysicalProduct){
+                System.out.print("|| Weight: "+ ((GiftPhysicalProduct) product).getWeight());
+            }
+            System.out.println();
         }
     }
 

@@ -162,5 +162,19 @@ public class Validation {
     public static void printDelimiter() {
         System.out.println("|=========================|");
     }
-
+    public static String inputMessage(String message) {
+        String inputString;
+        while (true) {
+            try {
+                System.out.print(message);
+                inputString = ScannerUtil.getInstance().nextLine();
+                if (inputString.isEmpty())
+                    throw new Exception();
+                else     
+                    return inputString;
+            } catch (Exception exception) {
+                System.out.println("Invalid input! Message can not be blank!");
+            }
+        }
+    }
 }

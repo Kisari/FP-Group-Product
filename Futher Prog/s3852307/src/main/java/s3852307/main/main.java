@@ -41,11 +41,13 @@ public class main {
             System.out.println("|10. Print the shopping cart receipt                      |");
             System.out.println("|11. View Product                                         |");
             System.out.println("|12. View exist cart                                      |");
-            System.out.println("|13. Exit                                                 |");
+            System.out.println("|13. View gift's message                                  |");
+            System.out.println("|14. Edit gift's message                                  |");
+            System.out.println("|15. Exit                                                 |");
             System.out.println("===========================================================");
             System.out.println("\n");
 
-            choice = Validation.inputChoice(1, 13);
+            choice = Validation.inputChoice(1, 15);
 
             switch (choice) {
                 case 1:
@@ -54,13 +56,21 @@ public class main {
                     System.out.println("|=========================|");
                     System.out.println("-- 1. Digital product");
                     System.out.println("-- 2. Physical product");
-                    choice = Validation.inputChoice(1, 2);
+                    System.out.println("-- 3. Gift Digital product");
+                    System.out.println("-- 4. Gift Physical product");
+                    choice = Validation.inputChoice(1, 4);
                     switch (choice) {
                         case 1:
                             productService.createProduct("DIGITAL");
                             break;
                         case 2:
                             productService.createProduct("PHYSICAL");
+                            break;
+                        case 3:
+                            productService.createProduct("GIFT DIGITAL");
+                            break;
+                        case 4:
+                            productService.createProduct("GIFT PHYSICAL");
                             break;
                     }
                     break;
@@ -76,7 +86,7 @@ public class main {
                     System.out.println("|=========================|");
                     System.out.println("3. Create a new shopping cart:");
                     System.out.println("|=========================|");
-                    if (shoppingCart != null && !shoppingCarts.contains(shoppingCart)) {
+                    if (!shoppingCart.getItems().isEmpty() && !shoppingCarts.contains(shoppingCart)) {
                         shoppingCarts.add(shoppingCart);
                     }
                     shoppingCart = new ShoppingCart();
@@ -128,18 +138,21 @@ public class main {
                     System.out.println("|=========================|");
                     System.out.println("8. Select unpaid cart to view details ");
                     System.out.println("|=========================|");
+                    if (!shoppingCart.getItems().isEmpty() && !shoppingCarts.contains(shoppingCart)) {
+                        shoppingCarts.add(shoppingCart);
+                    }
                     if (shoppingCarts.size() == 0) {
                         System.out.println("No shopping cart can be selected");
-                    }
+                        break;
+                    }                        
                     System.out.println("There are " + shoppingCarts.size() + " in the store.");
                     int selectedIndex = Validation.inputChoice(1, shoppingCarts.size());
                     if (shoppingCarts.get(selectedIndex - 1).getPaid()) {
                         System.out.println("Cannot select and view this cart since it has paid!! Try again");
                     } else {
-                        if (shoppingCart != null) {
-                            shoppingCarts.add(shoppingCart);
-                        }
-                        shoppingCart = shoppingCarts.get(selectedIndex);
+
+                        shoppingCart = shoppingCarts.get(selectedIndex-1);
+                        shoppingCartService.printCart(shoppingCart.getItems());
                         System.out.println("Successfully change to cart " + selectedIndex);
                     }
                     break;
@@ -169,10 +182,15 @@ public class main {
                     // shoppingCartService.streamCart(new CouponService());
                     break;
                 case 13:
+                    productService.viewProductMessage();
+                    break;
+                case 14:
+                    productService.editProductMessage();
+                case 15:
                     System.err.println("Exited!");
                     System.exit(0);
             }
             System.out.println("\n");
-        } while (choice != 13);
+        } while (choice != 15);
     }
 }
