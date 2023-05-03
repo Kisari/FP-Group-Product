@@ -5,6 +5,6 @@
 3. Truong Bach Minh - s3891909
 4. Nguyen Ha Minh Duy - s3852307
 ## Github Repository
-- Github URL: [https://github.com/Cullen179/Prog1-Argentina](https://github.com/Kisari/FP-Group-Product)
+- Github URL: https://github.com/Kisari/FP-Group-Product
 ## Presentation
 - Youtube Video: 
