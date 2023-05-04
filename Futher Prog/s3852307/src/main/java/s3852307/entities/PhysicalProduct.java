@@ -1,4 +1,7 @@
 package s3852307.entities;
+
+import java.util.ArrayList;
+
 /**
  * @author <Nguyen Ha Minh Duy - s3852307>
  */
