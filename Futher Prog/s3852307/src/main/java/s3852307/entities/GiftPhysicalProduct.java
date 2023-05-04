@@ -1,4 +1,5 @@
-package s3852307.entities;
+import s3852307.entities.*;
+
 /**
  * @author <Nguyen Ha Minh Duy - s3852307>
  */
