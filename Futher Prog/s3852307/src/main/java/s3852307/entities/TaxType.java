@@ -13,4 +13,5 @@ public enum TaxType {
         this.taxRate = taxRate;
     }
 
+    
 }

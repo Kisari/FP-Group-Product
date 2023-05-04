@@ -10,10 +10,23 @@ public abstract class Product {
     private String name;
     private String description;
     private int quantityAvailable;
-    private double price;
     private TaxType tax;
+    private double price;
     private ArrayList<Coupon> couponList = new ArrayList<Coupon>();
     private Coupon applyCouponCode;
+
+    public Product() {
+    }
+
+    public Product(String name, String description, int quantityAvailable, double price, TaxType taxRate,
+            ArrayList<Coupon> couponList) {
+        this.name = name;
+        this.description = description;
+        this.quantityAvailable = quantityAvailable;
+        this.price = price;
+        this.couponList = couponList;
+        this.tax = taxRate;
+    }
 
     public void printCouponList() {
         for (Coupon coupon : couponList) {
@@ -21,21 +34,9 @@ public abstract class Product {
         }
     }
 
-    public Product() {
-    }
-    public Product(String name, String description, int quantityAvailable, double price, TaxType taxRate, Coupon coupon) {
-        this.name = name;
-        this.description = description;
-        this.quantityAvailable = quantityAvailable;
-        this.price = price;
-        this.tax = taxRate;
+    public void addCoupon(Coupon coupon) {
         this.couponList.add(coupon);
     }
-
-    public void addCoupon(Coupon coupon){
-        this.couponList.add(coupon);
-    }
-
 
     public String getName() {
         return name;
@@ -63,9 +64,9 @@ public abstract class Product {
 
     public double getPrice() {
         double price = this.price;
-        if (applyCouponCode != null) {
-            price = applyCouponCode.applyToPrice(this.price);
-        }
+//        if (applyCouponCode != null) {
+//            price = applyCouponCode.applyToPrice(this.price);
+//        }
 
         return price;
     }
@@ -77,6 +78,7 @@ public abstract class Product {
     public void decreaseQuantity(int quantity) {
         this.quantityAvailable -= quantity;
     }
+
     public TaxType getTaxType() {
         return tax;
     }
@@ -106,9 +108,7 @@ public abstract class Product {
         return "Product: " +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", quantityAvailable=" + quantityAvailable +
                 ", price=" + price +
-                ", taxType=" + tax +
-                ", coupon=";
+                ", taxType=" + tax;
     }
 }

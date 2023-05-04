@@ -1,5 +1,4 @@
 package s3852307.entities;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,8 +27,23 @@ public class CouponService {
         }
         return false;
     }
+
+    public static ArrayList<Coupon> parseFromStringToCoupon(String[] couponStringList) {
+        if (couponStringList.length == 0) {
+            return null;
+        }
+        ArrayList<Coupon> couponList = new ArrayList<>();
+        for (String couponString : couponStringList) {
+            Coupon newCoupon = null;
+            String[] coupon = couponString.split("[ ]", 0);
+            if (coupon[1].equalsIgnoreCase("price")) {
+                newCoupon = new PriceCoupon(coupon[0], Double.parseDouble(coupon[2]));
+            } else if (coupon[1].equalsIgnoreCase("percent")) {
+                newCoupon = new PercentCoupon(coupon[0], Integer.parseInt(coupon[2]));
+            }
+            if (newCoupon != null)
+                couponList.add(newCoupon);
+        }
+        return couponList;
+    }
 }
-
-
-
-

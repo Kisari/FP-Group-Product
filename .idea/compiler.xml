@@ -9,9 +9,11 @@
         <module name="s3852307" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="s3852307" target="19" />
-    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="s3852307" options="--add-modules java.base" />
+    </option>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
