@@ -1,3 +1,5 @@
+package s3852307.entities;
+
 import s3852307.entities.*;
 
 /**
