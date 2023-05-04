@@ -149,9 +149,9 @@ public class Validation {
             case 1:
                 return TaxType.TAX_FREE;
             case 2:
-                return TaxType.NORMAL_TAX;
+                return TaxType.TAX_NORMAL;
             case 3:
-                return TaxType.LUXURY_TAX;
+                return TaxType.TAX_LUXURY;
             default:
                 return TaxType.TAX_FREE;
         }
