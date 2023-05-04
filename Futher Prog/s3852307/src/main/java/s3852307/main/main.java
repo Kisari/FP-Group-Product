@@ -1,6 +1,7 @@
 package s3852307.main;
 
 import s3852307.entities.Coupon;
+import s3852307.entities.CouponService;
 import s3852307.entities.ShoppingCart;
 import s3852307.service.ProductService;
 import s3852307.service.ShoppingCartService;
@@ -39,11 +40,14 @@ public class main {
             System.out.println("|9. Apply Coupon                                          |");
             System.out.println("|10. Print the shopping cart receipt                      |");
             System.out.println("|11. View Product                                         |");
-            System.out.println("|12. Exit                                                 |");
+            System.out.println("|12. View exist cart                                      |");
+            System.out.println("|13. View gift's message                                  |");
+            System.out.println("|14. Edit gift's message                                  |");
+            System.out.println("|15. Exit                                                 |");
             System.out.println("===========================================================");
             System.out.println("\n");
 
-            choice = Validation.inputChoice(1, 12);
+            choice = Validation.inputChoice(1, 15);
 
             switch (choice) {
                 case 1:
@@ -52,13 +56,21 @@ public class main {
                     System.out.println("|=========================|");
                     System.out.println("-- 1. Digital product");
                     System.out.println("-- 2. Physical product");
-                    choice = Validation.inputChoice(1, 2);
+                    System.out.println("-- 3. Gift Digital product");
+                    System.out.println("-- 4. Gift Physical product");
+                    choice = Validation.inputChoice(1, 4);
                     switch (choice) {
                         case 1:
                             productService.createProduct("DIGITAL");
                             break;
                         case 2:
                             productService.createProduct("PHYSICAL");
+                            break;
+                        case 3:
+                            productService.createProduct("GIFT DIGITAL");
+                            break;
+                        case 4:
+                            productService.createProduct("GIFT PHYSICAL");
                             break;
                     }
                     break;
@@ -74,7 +86,7 @@ public class main {
                     System.out.println("|=========================|");
                     System.out.println("3. Create a new shopping cart:");
                     System.out.println("|=========================|");
-                    if (shoppingCart != null) {
+                    if (!shoppingCart.getItems().isEmpty() && !shoppingCarts.contains(shoppingCart)) {
                         shoppingCarts.add(shoppingCart);
                     }
                     shoppingCart = new ShoppingCart();
@@ -88,7 +100,7 @@ public class main {
                     productService.printProduct();
                     System.out.println("|=========================|");
                     shoppingCartService.addItem(shoppingCart.getItems(),
-                            Validation.inputProductName("Enter product name: "));
+                            Validation.inputProductName("Enter product name(Format: DIGITAL - NAME) : "));
                     break;
                 case 5:
                     System.out.println("|=========================|");
@@ -111,8 +123,8 @@ public class main {
                     System.out.println("|=========================|");
                     System.out.println("7. Display all shopping carts based on their total weight");
                     System.out.println("|=========================|");
-                    if (shoppingCarts != null) {
-                        if (shoppingCart != null && shoppingCarts.contains(shoppingCart) == false)
+                    if (shoppingCarts.size() != 0) {
+                        if (shoppingCart.getItems().size() != 0 && shoppingCarts.contains(shoppingCart) == false)
                             shoppingCarts.add(shoppingCart);
                         Collections.sort(shoppingCarts);
                         for (ShoppingCart shoppingCartInLoop : shoppingCarts) {
@@ -126,18 +138,21 @@ public class main {
                     System.out.println("|=========================|");
                     System.out.println("8. Select unpaid cart to view details ");
                     System.out.println("|=========================|");
+                    if (!shoppingCart.getItems().isEmpty() && !shoppingCarts.contains(shoppingCart)) {
+                        shoppingCarts.add(shoppingCart);
+                    }
                     if (shoppingCarts.size() == 0) {
                         System.out.println("No shopping cart can be selected");
-                    }
+                        break;
+                    }                        
                     System.out.println("There are " + shoppingCarts.size() + " in the store.");
                     int selectedIndex = Validation.inputChoice(1, shoppingCarts.size());
                     if (shoppingCarts.get(selectedIndex - 1).getPaid()) {
                         System.out.println("Cannot select and view this cart since it has paid!! Try again");
                     } else {
-                        if (shoppingCart != null) {
-                            shoppingCarts.add(shoppingCart);
-                        }
-                        shoppingCart = shoppingCarts.get(selectedIndex);
+
+                        shoppingCart = shoppingCarts.get(selectedIndex-1);
+                        shoppingCartService.printCart(shoppingCart.getItems());
                         System.out.println("Successfully change to cart " + selectedIndex);
                     }
                     break;
@@ -163,10 +178,19 @@ public class main {
                     productService.streamProduct();
                     break;
                 case 12:
+                    shoppingCartService.streamCart(shoppingCart);
+                    // shoppingCartService.streamCart(new CouponService());
+                    break;
+                case 13:
+                    productService.viewProductMessage();
+                    break;
+                case 14:
+                    productService.editProductMessage();
+                case 15:
                     System.err.println("Exited!");
                     System.exit(0);
             }
             System.out.println("\n");
-        } while (choice != 10);
+        } while (choice != 15);
     }
 }

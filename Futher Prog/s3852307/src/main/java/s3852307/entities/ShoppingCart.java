@@ -40,7 +40,7 @@ public class ShoppingCart implements Comparable<ShoppingCart> {
     public int compareTo(ShoppingCart otherCart) {
         double thisTotalWeight = this.getTotalWeight();
         double otherTotalWeight = otherCart.getTotalWeight();
-
+        
         if (thisTotalWeight < otherTotalWeight) {
             return -1;
         } else if (thisTotalWeight > otherTotalWeight) {

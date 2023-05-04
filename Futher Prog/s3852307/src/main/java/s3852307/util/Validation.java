@@ -27,6 +27,13 @@ public class Validation {
     public static boolean isDigitalProductName(String productName) {
         return productName.matches(Constant.DIGITAL_PRODUCT_REGEX);
     }
+    public static boolean isPhysicalProductGiftName(String productName) {
+        return productName.matches(Constant.PHYSICAL_PRODUCT_GIFT_REGEX);
+    }
+
+    public static boolean isDigitalProductGiftName(String productName) {
+        return productName.matches(Constant.DIGITAL_PRODUCT_GIFT_REGEX);
+    }
 
     public static int inputInt(String message) {
         int integer = 0;
@@ -62,22 +69,22 @@ public class Validation {
             System.out.print(message);
             inputString = ScannerUtil.getInstance().nextLine();
             if (message.contains("physical product")) {
-                if (isPhysicalProductName(inputString))
+                if (isPhysicalProductName(inputString) || isPhysicalProductGiftName(inputString))
                     return inputString;
                 else
                     System.out
-                            .println("Invalid input! Please enter a valid physical product name (e.g. PHYSICAL - 1))");
+                            .println("Invalid input! Please enter a valid physical product name (e.g. PHYSICAL - 1 or GiftPhysicalProduct - 1))");
             } else if (message.contains("digital product")) {
-                if (isDigitalProductName(inputString))
+                if (isDigitalProductName(inputString) || isDigitalProductGiftName(inputString))
                     return inputString;
                 else
-                    System.out.println("Invalid input! Please enter a valid digital product name (e.g. DIGITAL - 1))");
+                    System.out.println("Invalid input! Please enter a valid digital product name (e.g. DIGITAL - 1 or GiftDigitalProduct - 1))");
             } else {
-                if (isDigitalProductName(inputString) || isPhysicalProductName(inputString))
+                if (isDigitalProductName(inputString) || isPhysicalProductName(inputString) || isDigitalProductGiftName(inputString)|| isPhysicalProductGiftName(inputString))
                     return inputString;
                 else
                     System.out.println(
-                            "Invalid input! Please enter a valid product name (e.g. PHYSICAL - 1 or DIGITAL - 1))");
+                            "Invalid input! Please enter a valid product name (e.g. PHYSICAL - 1 or GiftDigitalProduct - 1))");
             }
         }
     }
@@ -155,5 +162,19 @@ public class Validation {
     public static void printDelimiter() {
         System.out.println("|=========================|");
     }
-
+    public static String inputMessage(String message) {
+        String inputString;
+        while (true) {
+            try {
+                System.out.print(message);
+                inputString = ScannerUtil.getInstance().nextLine();
+                if (inputString.isEmpty())
+                    throw new Exception();
+                else     
+                    return inputString;
+            } catch (Exception exception) {
+                System.out.println("Invalid input! Message can not be blank!");
+            }
+        }
+    }
 }

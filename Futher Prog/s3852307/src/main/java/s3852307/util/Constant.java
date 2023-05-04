@@ -10,6 +10,8 @@ public class Constant {
     public static double baseFee = 0.1;
     public static final String PHYSICAL_PRODUCT_REGEX = "PHYSICAL - (.*)";
     public static final String DIGITAL_PRODUCT_REGEX = "DIGITAL - (.*)";
+    public static final String PHYSICAL_PRODUCT_GIFT_REGEX = "GiftPhysicalProduct - (.*)";
+    public static final String DIGITAL_PRODUCT_GIFT_REGEX = "GiftDigitalProduct - (.*)";
 
     public static void setBaseFee() {
         double fee = 0;
