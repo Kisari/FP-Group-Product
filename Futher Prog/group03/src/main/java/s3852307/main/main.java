@@ -13,6 +13,9 @@ import java.util.List;
 
 /**
  * @author <Nguyen Ha Minh Duy - s3852307>
+ * @author <Dinh Le Hong Tin - s3932134>
+ * @author <Nguyen Ha Kieu Anh - s3818552>
+ * @author <Truong Bach Minh - s3891909>
  */
 
 public class main {
@@ -164,7 +167,7 @@ public class main {
                     break;
                 case 10:
                     System.out.println("|=========================|");
-                    System.out.println("8. Print the shopping cart receipt");
+                    System.out.println("10. Print the shopping cart receipt");
                     System.out.println("|=========================|");
                     shoppingCartService.printReceipt(shoppingCart, true);
                     shoppingCart.setPaid(true);
@@ -186,6 +189,7 @@ public class main {
                     break;
                 case 14:
                     productService.editProductMessage();
+                    break;
                 case 15:
                     System.err.println("Exited!");
                     System.exit(0);

@@ -3,6 +3,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+/**
+ * @author <Nguyen Ha Minh Duy - s3852307>
+ * @author <Dinh Le Hong Tin - s3932134>
+ * @author <Nguyen Ha Kieu Anh - s3818552>
+ * @author <Truong Bach Minh - s3891909>
+ */
 
 public class CouponService {
     private static ArrayList<Coupon> couponList = new ArrayList<Coupon>();

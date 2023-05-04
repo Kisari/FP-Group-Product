@@ -6,6 +6,9 @@ import java.util.Set;
 
 /**
  * @author <Nguyen Ha Minh Duy - s3852307>
+ * @author <Dinh Le Hong Tin - s3932134>
+ * @author <Nguyen Ha Kieu Anh - s3818552>
+ * @author <Truong Bach Minh - s3891909>
  */
 
 public class ShoppingCart implements Comparable<ShoppingCart> {

@@ -2,7 +2,11 @@ package s3852307.service;
 
 /**
  * @author <Nguyen Ha Minh Duy - s3852307>
+ * @author <Dinh Le Hong Tin - s3932134>
+ * @author <Nguyen Ha Kieu Anh - s3818552>
+ * @author <Truong Bach Minh - s3891909>
  */
+
 import s3852307.entities.*;
 import s3852307.util.Constant;
 import s3852307.util.Validation;
@@ -227,6 +231,7 @@ public class ShoppingCartService implements ShoppingCartInterface {
             return;
         System.out.println("Total tax :" + this.cartAmount(shoppingCart.getItems())[1]);
         System.out.println("Total shipping fee :" + this.cartAmount(shoppingCart.getItems())[2]);
+        System.out.println("Total Quantity :" + items.size());
         Validation.printDelimiter();
         System.out.println("Date of purchase :" + dateFormat.format(date));
         Validation.printDelimiter();
