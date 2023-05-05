@@ -18,20 +18,9 @@ import s3852307.util.Validation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.stream.Stream;
-import java.io.FileInputStream;
-import java.io.File;
-import java.io.ObjectInputStream;
-import java.util.Scanner;
-import java.io.*;
-import s3852307.entities.Coupon;
 import s3852307.entities.CouponService;
-import static s3852307.entities.TaxType.NORMAL_TAX;
-import static s3852307.entities.TaxType.TAX_FREE;
-import static s3852307.entities.TaxType.LUXURY_TAX;
 
 public class ProductService implements ProductInterface {
     private static List<Product> products = new ArrayList<Product>();
@@ -46,9 +35,12 @@ public class ProductService implements ProductInterface {
         return null;
     }
 
+    public static List<Product> getProducts() {
+        return products;
+    }
+
     @Override
     public void createProduct(String type) {
-        Scanner scanner = new Scanner(System.in);
         Product product = null;
         String productName = "";
         if (type.equals("DIGITAL")) {
@@ -76,11 +68,12 @@ public class ProductService implements ProductInterface {
         product.setPrice(Validation.inputDouble("Enter product price: "));
         if (product instanceof PhysicalProduct) {
             ((PhysicalProduct) product).setWeight(Validation.inputDouble("Enter product weight: "));
-        } else if (product instanceof GiftDigitalProduct){
+        } else if (product instanceof GiftDigitalProduct) {
             ((GiftDigitalProduct) product).setMessage(Validation.inputMessage("Enter gift digital product message: "));
-        } else if (product instanceof GiftPhysicalProduct){
+        } else if (product instanceof GiftPhysicalProduct) {
             ((GiftPhysicalProduct) product).setWeight(Validation.inputDouble("Enter gift physical product weight: "));
-            ((GiftPhysicalProduct) product).setMessage(Validation.inputMessage("Enter gift physical product message: "));
+            ((GiftPhysicalProduct) product)
+                    .setMessage(Validation.inputMessage("Enter gift physical product message: "));
         }
         product.addCoupon(Validation.inputCode("Coupon Type Options...", couponList));
         product.setTaxType(Validation.inputTaxType("Tax type options ..."));
@@ -102,11 +95,12 @@ public class ProductService implements ProductInterface {
         product.setPrice(Validation.inputDouble("Enter product price: "));
         if (product instanceof PhysicalProduct) {
             ((PhysicalProduct) product).setWeight(Validation.inputDouble("Enter product weight: "));
-        } else if (product instanceof GiftDigitalProduct){
+        } else if (product instanceof GiftDigitalProduct) {
             ((GiftDigitalProduct) product).setMessage(Validation.inputMessage("Enter gift digital product message: "));
-        } else if (product instanceof GiftPhysicalProduct){
+        } else if (product instanceof GiftPhysicalProduct) {
             ((GiftPhysicalProduct) product).setWeight(Validation.inputDouble("Enter gift product weight: "));
-            ((GiftPhysicalProduct) product).setMessage(Validation.inputMessage("Enter gift physical product message: "));
+            ((GiftPhysicalProduct) product)
+                    .setMessage(Validation.inputMessage("Enter gift physical product message: "));
         }
         product.setTaxType(Validation.inputTaxType("Tax type options ..."));
         System.out.println("Product updated successfully!");
@@ -125,7 +119,7 @@ public class ProductService implements ProductInterface {
 
     @Override
     public void streamProduct() {
-        String fileName = "FP-Group-Product/Futher Prog/s3852307/src/main/java/s3852307/entities/product.txt";
+        String fileName = "Futher Prog/group03/src/main/java/s3852307/entities/product.txt";
         try {
             Files.lines(Paths.get(fileName)).filter(l -> l.length() > 0).map(line -> line.toString()).forEach(
                     c -> {
@@ -144,45 +138,45 @@ public class ProductService implements ProductInterface {
         String[] couponStringList = null;
         if (array[0].contains("GiftDigitalProduct")) {
             couponStringList = Arrays.copyOfRange(array, 6, array.length);
-            return new GiftDigitalProduct(array[0], 
-            array[1], 
-            Integer.parseInt(array[2]), 
-            Double.parseDouble(array[3]),
-            array[4], 
-            TaxType.valueOf(array[5]), 
-            CouponService.parseFromStringToCoupon(couponStringList));
+            return new GiftDigitalProduct(array[0],
+                    array[1],
+                    Integer.parseInt(array[2]),
+                    Double.parseDouble(array[3]),
+                    array[4],
+                    TaxType.valueOf(array[5]),
+                    CouponService.parseFromStringToCoupon(couponStringList));
         } else if (array[0].contains("GiftPhysicalProduct")) {
             couponStringList = Arrays.copyOfRange(array, 7, array.length);
-            return new GiftPhysicalProduct(array[0], 
-            array[1], 
-            Integer.parseInt(array[2]), 
-            Double.parseDouble(array[3]),
-            Double.parseDouble(array[4]), 
-            array[5], 
-            TaxType.valueOf(array[6]),
-            CouponService.parseFromStringToCoupon(couponStringList));
+            return new GiftPhysicalProduct(array[0],
+                    array[1],
+                    Integer.parseInt(array[2]),
+                    Double.parseDouble(array[3]),
+                    Double.parseDouble(array[4]),
+                    array[5],
+                    TaxType.valueOf(array[6]),
+                    CouponService.parseFromStringToCoupon(couponStringList));
         } else if (array[0].contains("PHYSICAL")) {
             couponStringList = Arrays.copyOfRange(array, 6, array.length);
             return new PhysicalProduct(array[0],
-            array[1], 
-            Integer.parseInt(array[2]), 
-            Double.parseDouble(array[3]),
-            Double.parseDouble(array[4]), 
-            TaxType.valueOf(array[5]),
-            CouponService.parseFromStringToCoupon(couponStringList));
+                    array[1],
+                    Integer.parseInt(array[2]),
+                    Double.parseDouble(array[3]),
+                    Double.parseDouble(array[4]),
+                    TaxType.valueOf(array[5]),
+                    CouponService.parseFromStringToCoupon(couponStringList));
         } else {
             couponStringList = Arrays.copyOfRange(array, 5, array.length);
-            return new DigitalProduct(array[0], 
-            array[1], 
-            Integer.parseInt(array[2]), 
-            Double.parseDouble(array[3]),
-            TaxType.valueOf(array[4]),
-            CouponService.parseFromStringToCoupon(couponStringList));
+            return new DigitalProduct(array[0],
+                    array[1],
+                    Integer.parseInt(array[2]),
+                    Double.parseDouble(array[3]),
+                    TaxType.valueOf(array[4]),
+                    CouponService.parseFromStringToCoupon(couponStringList));
         }
     }
 
     public static boolean checkProduct(String product) {
-        return product.contains("PHYSICAL") ||  product.contains("DIGITAL") ||  product.contains("GiftPhysicalProduct");
+        return product.contains("PHYSICAL") || product.contains("DIGITAL") || product.contains("GiftPhysicalProduct");
     }
 
     public void printProduct() {
@@ -190,16 +184,20 @@ public class ProductService implements ProductInterface {
             System.out.println((i + 1) + "." + products.get(i).getName());
         }
     }
-    public void viewProductMessage(){
+
+    public void viewProductMessage() {
         String productName = Validation.inputProductName("Enter product name: ");
         Product product = isProductExist(productName);
         if (product == null) {
             System.out.println("Product does not exist!");
             return;
         } else if (product instanceof GiftDigitalProduct) {
-            System.out.println("The message of "+productName+" is :"+((GiftDigitalProduct) product).getMessage());;
-        } else if (product instanceof GiftPhysicalProduct){
-            System.out.println("The message of "+productName+" is :"+((GiftPhysicalProduct) product).getMessage());;
+            System.out.println("The message of " + productName + " is :" + ((GiftDigitalProduct) product).getMessage());
+            ;
+        } else if (product instanceof GiftPhysicalProduct) {
+            System.out
+                    .println("The message of " + productName + " is :" + ((GiftPhysicalProduct) product).getMessage());
+            ;
         } else {
             System.out.println("This product is not a gift so it doesn't have message!");
         }
@@ -214,7 +212,7 @@ public class ProductService implements ProductInterface {
             return;
         } else if (product instanceof GiftDigitalProduct) {
             ((GiftDigitalProduct) product).setMessage(Validation.inputMessage("Enter new product message: "));
-        } else if (product instanceof GiftPhysicalProduct){
+        } else if (product instanceof GiftPhysicalProduct) {
             ((GiftPhysicalProduct) product).setMessage(Validation.inputMessage("Enter new product message: "));
         } else {
             System.out.println("This product is not a gift so it doesn't have message!");

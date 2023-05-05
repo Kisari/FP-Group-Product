@@ -1,8 +1,6 @@
 package s3852307.main;
 
-import s3852307.entities.Coupon;
-import s3852307.entities.CouponService;
-import s3852307.entities.ShoppingCart;
+import s3852307.entities.*;
 import s3852307.service.ProductService;
 import s3852307.service.ShoppingCartService;
 import s3852307.util.Validation;
@@ -44,7 +42,7 @@ public class main {
             System.out.println("|10. Remove products from the current shopping cart        |");
             System.out.println("|11. Apply Coupon                                          |");
             System.out.println("|12. Select unpaid cart to view details                    |");
-            System.out.println("|13. Display all shopping carts based on their total weight|");
+            System.out.println("|13. Sorting all shopping carts based on their total weight|");
             System.out.println("|14. Print the shopping cart receipt                       |");
             System.out.println("|15. Exit                                                  |");
             System.out.println("============================================================");
@@ -78,7 +76,9 @@ public class main {
                     }
                     break;
                 case 2:
-                    productService.streamProduct();
+                    for (Product product : ProductService.getProducts()) {
+                        System.out.println(product);
+                    }
                     break;
                 case 3:
                     System.out.println("|=========================|");
@@ -128,8 +128,6 @@ public class main {
                     System.out.println("|=========================|");
                     shoppingCartService.removeItem(shoppingCart.getItems(),
                             Validation.inputProductName("Enter product name: "));
-                    shoppingCartService.removeItem(shoppingCart.getItems(),
-                            Validation.inputProductName("Enter product name:"));
                     break;
                 case 11:
                     System.out.println("|=========================|");
@@ -166,7 +164,7 @@ public class main {
                     break;
                 case 13:
                     System.out.println("|=========================|");
-                    System.out.println("13. Display all shopping carts based on their total weight");
+                    System.out.println("13. Sorting all shopping carts based on their total weight");
                     System.out.println("|=========================|");
                     if (shoppingCarts.size() != 0) {
                         if (shoppingCart.getItems().size() != 0 && shoppingCarts.contains(shoppingCart) == false)
