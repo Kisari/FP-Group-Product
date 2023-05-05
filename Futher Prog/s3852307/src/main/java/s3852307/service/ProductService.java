@@ -199,7 +199,6 @@ public class ProductService implements ProductInterface {
         } else {
             System.out.println("This product is not a gift so it doesn't have message!");
         }
-
     }
 
     public void editProductMessage() {
