@@ -7,4 +7,5 @@
 ## Github Repository
 - Github URL: https://github.com/Kisari/FP-Group-Product
 ## Presentation
-- Video URL: https://rmiteduau.sharepoint.com/sites/furtherprog/_layouts/15/stream.aspx?id=%2Fsites%2Ffurtherprog%2FShared%20Documents%2FGroup3%5FDemo%2Emov&ga=1 
+- Video URL1: https://rmiteduau.sharepoint.com/sites/furtherprog/_layouts/15/stream.aspx?id=%2Fsites%2Ffurtherprog%2FShared%20Documents%2FGroup3%5FDemo%2Emov&ga=1 
+- Video URL2: https://drive.google.com/file/d/1Qx02yR7dhB1B_o3a58-zObJ4fo2XnRpi/view 
